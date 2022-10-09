@@ -9,8 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("NewsHubRss")
-            .padding()
+        NavigationView {
+            ZStack {
+                Color.yellow.ignoresSafeArea()
+
+                LazyVGrid(columns: []) {
+
+                }
+                .navigationTitle("NewsHubRss")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    Button {
+                        // Open the form to add new RSS feed
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
     }
 }
 
