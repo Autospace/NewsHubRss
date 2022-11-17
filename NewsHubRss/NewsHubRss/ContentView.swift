@@ -11,16 +11,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.yellow.ignoresSafeArea()
-
                 LazyVGrid(columns: []) {
-
                 }
                 .navigationTitle("NewsHubRss")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button {
-                        // Open the form to add new RSS feed
+                        print("Action to open the form")
                     } label: {
                         Image(systemName: "plus")
                     }
