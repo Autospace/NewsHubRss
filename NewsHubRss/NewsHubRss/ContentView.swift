@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var navigateToAddFeedScreen = false
+
     var body: some View {
         NavigationView {
-            ZStack {
-                LazyVGrid(columns: []) {
-                }
-                .navigationTitle("NewsHubRss")
+            VStack {
+                HStack{}
+                .navigationTitle("News Hub Rss")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button {
-                        print("Action to open the form")
+                        navigateToAddFeedScreen = true
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
+
+                NavigationLink(destination: AddFeedView(), isActive: $navigateToAddFeedScreen) {}
             }
         }
     }
