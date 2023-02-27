@@ -1,20 +1,24 @@
 PODS:
   - FeedKit (9.1.2)
+  - SwiftLint (0.50.3)
   - SwiftSoup (2.4.3)
 
 DEPENDENCIES:
   - FeedKit
+  - SwiftLint
   - SwiftSoup
 
 SPEC REPOS:
   trunk:
     - FeedKit
+    - SwiftLint
     - SwiftSoup
 
 SPEC CHECKSUMS:
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
+  SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
   SwiftSoup: 3384f2e618cfc1b3cbc7852c16692fe8de13fb8f
 
-PODFILE CHECKSUM: df59b865c8142e61b43bfc67b7290ae080d10aeb
+PODFILE CHECKSUM: 932d2c702b031e25bca6e675a682dba6e25d1fde
 
 COCOAPODS: 1.11.3

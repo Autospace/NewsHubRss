@@ -8,6 +8,7 @@ target 'NewsHubRss' do
   # Pods for NewsHubRss
   pod 'SwiftSoup', :inhibit_warnings => true
   pod 'FeedKit'
+  pod 'SwiftLint'
 
   target 'NewsHubRssTests' do
     inherit! :search_paths

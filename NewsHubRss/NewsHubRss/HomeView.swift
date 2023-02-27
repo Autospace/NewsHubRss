@@ -13,7 +13,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack{}
+                HStack {}
                 .navigationTitle("News Hub Rss")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
