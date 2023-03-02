@@ -10,6 +10,7 @@
 		101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */; };
 		101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F729ABD0AD00879AA5 /* MainView.swift */; };
 		101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F929ABD0CA00879AA5 /* SettingsView.swift */; };
+		10861B9B29B132D20082F8B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10861B9D29B132D20082F8B3 /* Localizable.strings */; };
 		5FA579FD28C941360009C5C8 /* NewsHubRssApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA579FC28C941360009C5C8 /* NewsHubRssApp.swift */; };
 		5FA579FF28C941360009C5C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA579FE28C941360009C5C8 /* HomeView.swift */; };
 		5FA57A0128C9413C0009C5C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FA57A0028C9413C0009C5C8 /* Assets.xcassets */; };
@@ -46,6 +47,8 @@
 		101FC4F729ABD0AD00879AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		101FC4F929ABD0CA00879AA5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		10861B9829AD30780082F8B3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		10861B9C29B132D20082F8B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10861B9E29B1333F0082F8B3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CEDB917CD48D7F79DBA7874 /* Pods_NewsHubRss_NewsHubRssUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsHubRss_NewsHubRssUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3781DAA021609D53F0206B23 /* Pods-NewsHubRssTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsHubRssTests.debug.xcconfig"; path = "Target Support Files/Pods-NewsHubRssTests/Pods-NewsHubRssTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4A3B109CF97666E7DA49ED1A /* Pods-NewsHubRss-NewsHubRssUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsHubRss-NewsHubRssUITests.debug.xcconfig"; path = "Target Support Files/Pods-NewsHubRss-NewsHubRssUITests/Pods-NewsHubRss-NewsHubRssUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
 				5FA57A0028C9413C0009C5C8 /* Assets.xcassets */,
 				5FA57A0228C9413C0009C5C8 /* Preview Content */,
+				10861B9D29B132D20082F8B3 /* Localizable.strings */,
 			);
 			path = NewsHubRss;
 			sourceTree = "<group>";
@@ -270,6 +274,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 5FA579F028C941360009C5C8;
 			productRefGroup = 5FA579FA28C941360009C5C8 /* Products */;
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FA57A0428C9413C0009C5C8 /* Preview Assets.xcassets in Resources */,
+				10861B9B29B132D20082F8B3 /* Localizable.strings in Resources */,
 				5FA57A0128C9413C0009C5C8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,11 +480,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		10861B9D29B132D20082F8B3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10861B9C29B132D20082F8B3 /* en */,
+				10861B9E29B1333F0082F8B3 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		5FA57A1B28C9413C0009C5C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -539,6 +558,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

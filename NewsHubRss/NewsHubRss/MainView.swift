@@ -12,12 +12,12 @@ struct MainView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("mainPage.title", systemImage: "house")
                 }
 
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label("settingsPage.title", systemImage: "gear")
                 }
         }
     }
@@ -25,6 +25,12 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        Group {
+            MainView()
+                .environment(\.locale, .init(identifier: "en"))
+
+            MainView()
+                .environment(\.locale, .init(identifier: "ru"))
+        }
     }
 }

@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  NewsHubRss
+
+  Created by Aliaksei Mastounikau on 2.03.23.
+  
+*/
+
+// MARK: - Main page
+"mainPage.title" = "Главная";
+
+// MARK: - Settings page
+"settingsPage.title" = "Настройки";
+
+// MARK: - Add new feed page
+"addNewFeed.title" = "Добавить фид";
+"addNewFeed.instruction" = "Добавьте ссылку на фид в поле ниже";

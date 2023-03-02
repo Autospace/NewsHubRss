@@ -13,13 +13,7 @@ struct SettingsView: View {
             Form {
 
             }
-            .navigationTitle("Settings")
+            .navigationTitle("settingsPage.title")
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
     }
 }

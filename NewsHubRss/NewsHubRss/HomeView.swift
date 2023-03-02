@@ -14,7 +14,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 HStack {}
-                .navigationTitle("News Hub Rss")
+                .navigationTitle("mainPage.title" )
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button {

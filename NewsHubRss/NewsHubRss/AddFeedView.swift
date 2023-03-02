@@ -14,18 +14,12 @@ struct AddFeedView: View {
         NavigationView {
             Form {
                 Section {
-                    Text("Insert feed link into the field below")
+                    Text("addNewFeed.instruction")
                     TextField("", text: $feedUrl)
                 }
             }
-            .navigationTitle("Add feed")
+            .navigationTitle("addNewFeed.title")
             .navigationBarTitleDisplayMode(.inline)
         }
-    }
-}
-
-struct AddFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddFeedView()
     }
 }
