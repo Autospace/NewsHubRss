@@ -14,11 +14,11 @@ struct AddFeedView: View {
         NavigationView {
             Form {
                 Section {
-                    Text("addNewFeed.instruction")
+                    Text(L10n.AddNewFeed.instruction)
                     TextField("", text: $feedUrl)
                 }
             }
-            .navigationTitle("addNewFeed.title")
+            .navigationTitle(L10n.AddNewFeed.title)
             .navigationBarTitleDisplayMode(.inline)
         }
     }

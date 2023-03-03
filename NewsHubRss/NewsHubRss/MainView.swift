@@ -12,12 +12,12 @@ struct MainView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("mainPage.title", systemImage: "house")
+                    Label(L10n.MainPage.title, systemImage: "house")
                 }
 
             SettingsView()
                 .tabItem {
-                    Label("settingsPage.title", systemImage: "gear")
+                    Label(L10n.SettingsPage.title, systemImage: "gear")
                 }
         }
     }

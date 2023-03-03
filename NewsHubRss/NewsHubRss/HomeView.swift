@@ -14,7 +14,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 HStack {}
-                .navigationTitle("mainPage.title" )
+                .navigationTitle(L10n.MainPage.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button {

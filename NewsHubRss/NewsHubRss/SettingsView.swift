@@ -13,7 +13,7 @@ struct SettingsView: View {
             Form {
 
             }
-            .navigationTitle("settingsPage.title")
+            .navigationTitle(L10n.SettingsPage.title)
         }
     }
 }
