@@ -11,10 +11,16 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
   internal enum AddNewFeed {
+    /// Add
+    internal static let buttonTitle = L10n.tr("Localizable", "addNewFeed.buttonTitle", fallback: "Add")
     /// Insert feed link into the field below
     internal static let instruction = L10n.tr("Localizable", "addNewFeed.instruction", fallback: "Insert feed link into the field below")
     /// Add feed
     internal static let title = L10n.tr("Localizable", "addNewFeed.title", fallback: "Add feed")
+    internal enum TextField {
+      /// Feed URL
+      internal static let placeholder = L10n.tr("Localizable", "addNewFeed.textField.placeholder", fallback: "Feed URL")
+    }
   }
   internal enum MainPage {
     /// Localizable.strings

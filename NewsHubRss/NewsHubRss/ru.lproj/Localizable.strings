@@ -15,3 +15,5 @@
 // MARK: - Add new feed page
 "addNewFeed.title" = "Добавить фид";
 "addNewFeed.instruction" = "Добавьте ссылку на фид в поле ниже";
+"addNewFeed.textField.placeholder" = "URL фида";
+"addNewFeed.buttonTitle" = "Добавить";

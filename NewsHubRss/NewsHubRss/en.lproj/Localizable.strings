@@ -15,3 +15,5 @@
 // MARK: - Add new feed page
 "addNewFeed.title" = "Add feed";
 "addNewFeed.instruction" = "Insert feed link into the field below";
+"addNewFeed.textField.placeholder" = "Feed URL";
+"addNewFeed.buttonTitle" = "Add";
