@@ -13,31 +13,28 @@ struct AddFeedView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    Text(L10n.AddNewFeed.instruction)
-                    TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrl)
-                        .frame(height: 44)
-                        .autocapitalization(.none)
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke()
-                        )
-                }
+                Text(L10n.AddNewFeed.instruction)
+                TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrl)
+                    .frame(height: 44)
+                    .autocapitalization(.none)
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.gray)
+                    )
 
-                HStack {
-                    Spacer()
+                Spacer()
+                    .listRowSeparator(.hidden)
 
-                    Button(L10n.AddNewFeed.buttonTitle) {
-                        startScanningFeed()
+                Button(action: startScanningFeed) {
+                    HStack {
+                        Spacer()
+                        Text(L10n.AddNewFeed.buttonTitle)
+                            .padding(4)
+                        Spacer()
                     }
-                    .frame(width: UIScreen.main.bounds.width / 3, height: 44)
-                    .background(Color.yellow)
-                    .clipShape(Capsule())
-                    .foregroundColor(.black)
-
-                    Spacer()
                 }
+                .buttonStyle(.borderedProminent)
             }
             .navigationTitle(L10n.AddNewFeed.title)
             .navigationBarTitleDisplayMode(.inline)
