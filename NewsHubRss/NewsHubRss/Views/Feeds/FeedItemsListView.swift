@@ -11,6 +11,7 @@ import FeedKit
 struct FeedItemsListView: View {
     let feed: Feed
     @State private var feedItems: [Feed.FeedItem] = []
+    @State private var selectedFeedItem: Feed.FeedItem?
 
     var body: some View {
         NavigationView {
@@ -20,11 +21,19 @@ struct FeedItemsListView: View {
                         title: item.feedData.title ?? "",
                         date: item.feedData.pubDate ?? Date()
                     )
+                    .onTapGesture {
+                        selectedFeedItem = item
+                    }
                 }
             }
             .navigationTitle(feed.title)
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(.inset)
+            .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+                if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
+                    SafariView(url: url)
+                }
+            }
             .onAppear {
                 feed.loadFeedItems { feedItems in
                     self.feedItems = feedItems
