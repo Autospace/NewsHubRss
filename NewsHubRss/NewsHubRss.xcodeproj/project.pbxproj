@@ -10,6 +10,9 @@
 		101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */; };
 		101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F729ABD0AD00879AA5 /* MainView.swift */; };
 		101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F929ABD0CA00879AA5 /* SettingsView.swift */; };
+		106399DA29EDB180007B5DD0 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106399D929EDB180007B5DD0 /* Feed.swift */; };
+		106399DC29EDB91A007B5DD0 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106399DB29EDB91A007B5DD0 /* ModelData.swift */; };
+		106399DF29EDC2D6007B5DD0 /* FeedItemsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106399DE29EDC2D6007B5DD0 /* FeedItemsList.swift */; };
 		10861B9B29B132D20082F8B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10861B9D29B132D20082F8B3 /* Localizable.strings */; };
 		10861BA629B26B4F0082F8B3 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10861BA429B26B4F0082F8B3 /* L10n.swift */; };
 		10861BA729B26B4F0082F8B3 /* ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10861BA529B26B4F0082F8B3 /* ImageAssets.swift */; };
@@ -48,6 +51,9 @@
 		101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedView.swift; sourceTree = "<group>"; };
 		101FC4F729ABD0AD00879AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		101FC4F929ABD0CA00879AA5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		106399D929EDB180007B5DD0 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		106399DB29EDB91A007B5DD0 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		106399DE29EDC2D6007B5DD0 /* FeedItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsList.swift; sourceTree = "<group>"; };
 		10861B9829AD30780082F8B3 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		10861B9C29B132D20082F8B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10861B9E29B1333F0082F8B3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -115,6 +121,27 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		106399D829EDB169007B5DD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				106399D929EDB180007B5DD0 /* Feed.swift */,
+				106399DB29EDB91A007B5DD0 /* ModelData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		106399DD29EDB9E8007B5DD0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				101FC4F729ABD0AD00879AA5 /* MainView.swift */,
+				5FA579FE28C941360009C5C8 /* HomeView.swift */,
+				101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */,
+				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
+				106399DE29EDC2D6007B5DD0 /* FeedItemsList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		10861BA329B26A6F0082F8B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,12 +189,10 @@
 		5FA579FB28C941360009C5C8 /* NewsHubRss */ = {
 			isa = PBXGroup;
 			children = (
-				10861BA329B26A6F0082F8B3 /* Resources */,
-				101FC4F729ABD0AD00879AA5 /* MainView.swift */,
 				5FA579FC28C941360009C5C8 /* NewsHubRssApp.swift */,
-				5FA579FE28C941360009C5C8 /* HomeView.swift */,
-				101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */,
-				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
+				106399DD29EDB9E8007B5DD0 /* Views */,
+				106399D829EDB169007B5DD0 /* Models */,
+				10861BA329B26A6F0082F8B3 /* Resources */,
 				5FA57A0028C9413C0009C5C8 /* Assets.xcassets */,
 				5FA57A0228C9413C0009C5C8 /* Preview Content */,
 				10861B9D29B132D20082F8B3 /* Localizable.strings */,
@@ -477,7 +502,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				106399DF29EDC2D6007B5DD0 /* FeedItemsList.swift in Sources */,
 				101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */,
+				106399DA29EDB180007B5DD0 /* Feed.swift in Sources */,
+				106399DC29EDB91A007B5DD0 /* ModelData.swift in Sources */,
 				101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */,
 				10861BA629B26B4F0082F8B3 /* L10n.swift in Sources */,
 				101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */,
