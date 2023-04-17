@@ -16,7 +16,7 @@ struct HomeView: View {
                 List {
                     ForEach(modelData.feeds) { feed in
                         NavigationLink {
-                            FeedItemsList(feedUrl: feed.link)
+                            FeedItemsListView(feed: feed)
                         } label: {
                             Text(feed.title)
                         }
