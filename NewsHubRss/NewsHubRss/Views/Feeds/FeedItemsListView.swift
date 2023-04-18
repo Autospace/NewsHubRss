@@ -12,33 +12,50 @@ struct FeedItemsListView: View {
     let feed: Feed
     @State private var feedItems: [Feed.FeedItem] = []
     @State private var selectedFeedItem: Feed.FeedItem?
+    @State private var isLoading: Bool = false
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(feedItems) { item in
-                    FeedItemView(
-                        title: item.feedData.title ?? "",
-                        date: item.feedData.pubDate ?? Date()
-                    )
-                    .onTapGesture {
-                        selectedFeedItem = item
+            VStack {
+                if isLoading {
+                    ProgressView()
+                }
+                List {
+                    ForEach(feedItems) { item in
+                        FeedItemView(
+                            title: item.feedData.title ?? "",
+                            date: item.feedData.pubDate ?? Date()
+                        )
+                        .onTapGesture {
+                            selectedFeedItem = item
+                        }
+                    }
+                }
+                .refreshable {
+                    loadData(showLoadingIndicator: false)
+                }
+                .listStyle(.inset)
+                .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+                    if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
+                        SafariView(url: url)
                     }
                 }
             }
             .navigationTitle(feed.title)
             .navigationBarTitleDisplayMode(.inline)
-            .listStyle(.inset)
-            .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
-                if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
-                    SafariView(url: url)
-                }
-            }
             .onAppear {
-                feed.loadFeedItems { feedItems in
-                    self.feedItems = feedItems
-                }
+                loadData()
             }
+        }
+    }
+
+    private func loadData(showLoadingIndicator: Bool = true) {
+        if showLoadingIndicator {
+            isLoading = true
+        }
+        feed.loadFeedItems { feedItems in
+            isLoading = false
+            self.feedItems = feedItems
         }
     }
 }
