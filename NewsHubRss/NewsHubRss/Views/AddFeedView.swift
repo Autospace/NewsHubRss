@@ -11,34 +11,32 @@ struct AddFeedView: View {
     @State private var feedUrl = ""
 
     var body: some View {
-        NavigationView {
-            Form {
-                Text(L10n.AddNewFeed.instruction)
-                TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrl)
-                    .frame(height: 44)
-                    .autocapitalization(.none)
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray)
-                    )
+        Form {
+            Text(L10n.AddNewFeed.instruction)
+            TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrl)
+                .frame(height: 44)
+                .autocapitalization(.none)
+                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray)
+                )
 
-                Spacer()
-                    .listRowSeparator(.hidden)
+            Spacer()
+                .listRowSeparator(.hidden)
 
-                Button(action: startScanningFeed) {
-                    HStack {
-                        Spacer()
-                        Text(L10n.AddNewFeed.buttonTitle)
-                            .padding(4)
-                        Spacer()
-                    }
+            Button(action: startScanningFeed) {
+                HStack {
+                    Spacer()
+                    Text(L10n.AddNewFeed.buttonTitle)
+                        .padding(4)
+                    Spacer()
                 }
-                .buttonStyle(.borderedProminent)
             }
-            .navigationTitle(L10n.AddNewFeed.title)
-            .navigationBarTitleDisplayMode(.inline)
+            .buttonStyle(.borderedProminent)
         }
+        .navigationTitle(L10n.AddNewFeed.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func startScanningFeed() {
