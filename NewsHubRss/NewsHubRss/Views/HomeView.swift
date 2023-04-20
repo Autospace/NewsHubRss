@@ -22,8 +22,6 @@ struct HomeView: View {
                         }
                     }
                 }
-                .navigationTitle(L10n.MainPage.title)
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     NavigationLink {
                         AddFeedView()
@@ -32,6 +30,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .navigationTitle(L10n.MainPage.title)
         }
     }
 }

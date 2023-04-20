@@ -15,37 +15,35 @@ struct FeedItemsListView: View {
     @State private var isLoading: Bool = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                if isLoading {
-                    ProgressView()
-                }
-                List {
-                    ForEach(feedItems) { item in
-                        FeedItemView(
-                            title: item.feedData.title ?? "",
-                            date: item.feedData.pubDate ?? Date()
-                        )
-                        .onTapGesture {
-                            selectedFeedItem = item
-                        }
-                    }
-                }
-                .refreshable {
-                    loadData(showLoadingIndicator: false)
-                }
-                .listStyle(.inset)
-                .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
-                    if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
-                        SafariView(url: url)
+        VStack {
+            if isLoading {
+                ProgressView()
+            }
+            List {
+                ForEach(feedItems) { item in
+                    FeedItemView(
+                        title: item.feedData.title ?? "",
+                        date: item.feedData.pubDate ?? Date()
+                    )
+                    .onTapGesture {
+                        selectedFeedItem = item
                     }
                 }
             }
-            .navigationTitle(feed.title)
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                loadData()
+            .refreshable {
+                loadData(showLoadingIndicator: false)
             }
+            .listStyle(.inset)
+            .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+                if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
+                    SafariView(url: url)
+                }
+            }
+        }
+        .navigationTitle(feed.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            loadData()
         }
     }
 
