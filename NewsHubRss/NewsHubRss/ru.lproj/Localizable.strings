@@ -16,4 +16,5 @@
 "addNewFeed.title" = "Добавить фид";
 "addNewFeed.instruction" = "Добавьте ссылку на фид в поле ниже";
 "addNewFeed.textField.placeholder" = "URL фида";
+"addNewFeed.scanButtonTitle" = "Сканировать";
 "addNewFeed.buttonTitle" = "Добавить";

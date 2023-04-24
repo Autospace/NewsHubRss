@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddFeedView: View {
     @State private var feedUrl = ""
+    @State private var isLoading = false
 
     var body: some View {
         Form {
@@ -23,18 +24,24 @@ struct AddFeedView: View {
                 )
                 .disableAutocorrection(true)
 
-            Spacer()
-                .listRowSeparator(.hidden)
-
             Button(action: startScanningFeed) {
                 HStack {
                     Spacer()
-                    Text(L10n.AddNewFeed.buttonTitle)
+                    Text(L10n.AddNewFeed.scanButtonTitle)
                         .padding(4)
                     Spacer()
                 }
             }
             .buttonStyle(.borderedProminent)
+            .disabled(feedUrl.count < 3)
+            
+            if isLoading {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            }
         }
         .navigationTitle(L10n.AddNewFeed.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -45,7 +52,9 @@ struct AddFeedView: View {
             return
         }
 
+        isLoading = true
         Networking.getRSSPageOfSite(by: url) { result in
+            isLoading = false
             switch result {
             case .failure(let error):
                 print(error)

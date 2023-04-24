@@ -16,4 +16,5 @@
 "addNewFeed.title" = "Add feed";
 "addNewFeed.instruction" = "Insert feed link into the field below";
 "addNewFeed.textField.placeholder" = "Feed URL";
+"addNewFeed.scanButtonTitle" = "Scan";
 "addNewFeed.buttonTitle" = "Add";

@@ -15,6 +15,8 @@ internal enum L10n {
     internal static let buttonTitle = L10n.tr("Localizable", "addNewFeed.buttonTitle", fallback: "Add")
     /// Insert feed link into the field below
     internal static let instruction = L10n.tr("Localizable", "addNewFeed.instruction", fallback: "Insert feed link into the field below")
+    /// Scan
+    internal static let scanButtonTitle = L10n.tr("Localizable", "addNewFeed.scanButtonTitle", fallback: "Scan")
     /// Add feed
     internal static let title = L10n.tr("Localizable", "addNewFeed.title", fallback: "Add feed")
     internal enum TextField {
