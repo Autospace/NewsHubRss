@@ -21,6 +21,7 @@ struct AddFeedView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.gray)
                 )
+                .disableAutocorrection(true)
 
             Spacer()
                 .listRowSeparator(.hidden)
@@ -43,7 +44,7 @@ struct AddFeedView: View {
         guard let url = URL(string: feedUrl) else {
             return
         }
-        
+
         Networking.getRSSPageOfSite(by: url) { result in
             switch result {
             case .failure(let error):
