@@ -40,7 +40,18 @@ struct AddFeedView: View {
     }
 
     private func startScanningFeed() {
-        print("Start scanning \(feedUrl)")
+        guard let url = URL(string: feedUrl) else {
+            return
+        }
+        
+        Networking.getRSSPageOfSite(by: url) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let htmlDocument):
+                print(htmlDocument)
+            }
+        }
     }
 }
 
