@@ -10,6 +10,8 @@ import SwiftUI
 struct AddFeedView: View {
     @State private var feedUrl = ""
     @State private var isLoading = false
+    @State private var hasError = false
+    @State private var errorText = ""
 
     var body: some View {
         Form {
@@ -20,9 +22,20 @@ struct AddFeedView: View {
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray)
+                        .stroke(hasError ? Color.red : Color.gray)
                 )
                 .disableAutocorrection(true)
+                .onChange(of: feedUrl) { _ in
+                    hasError = false
+                }
+
+            if hasError {
+                Text(errorText)
+                    .listRowSeparator(.hidden)
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .padding(0)
+            }
 
             Button(action: startScanningFeed) {
                 HStack {
@@ -34,7 +47,8 @@ struct AddFeedView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(feedUrl.count < 3)
-            
+            .listRowSeparator(.hidden)
+
             if isLoading {
                 HStack {
                     Spacer()
@@ -53,10 +67,13 @@ struct AddFeedView: View {
         }
 
         isLoading = true
+        hasError = false
         Networking.getRSSPageOfSite(by: url) { result in
             isLoading = false
             switch result {
             case .failure(let error):
+                hasError = true
+                errorText = error.localizedDescription
                 print(error)
             case .success(let htmlDocument):
                 print(htmlDocument)
