@@ -387,6 +387,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		10861B9729AD2E3E0082F8B3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -727,6 +728,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"FeedKit\"",
+					"-framework",
+					"\"SwiftSoup\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.themalx.NewsHubRss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -758,6 +766,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"FeedKit\"",
+					"-framework",
+					"\"SwiftSoup\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.themalx.NewsHubRss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
