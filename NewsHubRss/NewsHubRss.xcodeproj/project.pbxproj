@@ -144,7 +144,6 @@
 				5FA579FE28C941360009C5C8 /* HomeView.swift */,
 				101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */,
 				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
-				106399E829EE07BF007B5DD0 /* SafariView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +153,7 @@
 			children = (
 				106399DE29EDC2D6007B5DD0 /* FeedItemsListView.swift */,
 				106399E129EDEB01007B5DD0 /* FeedItemView.swift */,
+				106399E829EE07BF007B5DD0 /* SafariView.swift */,
 			);
 			path = Feeds;
 			sourceTree = "<group>";
@@ -259,8 +259,8 @@
 			buildPhases = (
 				240869B5067011B9872F4A00 /* [CP] Check Pods Manifest.lock */,
 				10861BA229B2693E0082F8B3 /* SwiftGen script */,
-				10861B9729AD2E3E0082F8B3 /* ShellScript */,
 				5FA579F528C941360009C5C8 /* Sources */,
+				10861B9729AD2E3E0082F8B3 /* ShellScript */,
 				5FA579F628C941360009C5C8 /* Frameworks */,
 				5FA579F728C941360009C5C8 /* Resources */,
 				A2BC39C5A02DC60E41E2D340 /* [CP] Embed Pods Frameworks */,
