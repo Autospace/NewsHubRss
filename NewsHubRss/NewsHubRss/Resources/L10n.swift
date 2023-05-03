@@ -24,11 +24,15 @@ internal enum L10n {
       internal static let placeholder = L10n.tr("Localizable", "addNewFeed.textField.placeholder", fallback: "Feed URL")
     }
   }
-  internal enum MainPage {
+  internal enum Common {
     /// Localizable.strings
     ///   NewsHubRss
     /// 
     ///   Created by Aliaksei Mastounikau on 2.03.23.
+    internal static let add = L10n.tr("Localizable", "common.add", fallback: "Add")
+  }
+  internal enum MainPage {
+    /// Main
     internal static let title = L10n.tr("Localizable", "mainPage.title", fallback: "Main")
   }
   internal enum SettingsPage {

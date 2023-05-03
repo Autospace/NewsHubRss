@@ -63,7 +63,7 @@ struct AddFeedView: View {
 
             List {
                 ForEach(foundRssFeeds, id: \.self) { item in
-                    Text(item)
+                    FoundFeedView(feedURLString: item)
                 }
             }
             .listStyle(.inset)
