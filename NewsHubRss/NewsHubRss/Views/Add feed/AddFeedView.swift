@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftSoup
 
 struct AddFeedView: View {
-    @State private var feedUrl = ""
+    @State private var feedUrlString = "https://"
+    @FocusState private var textFieldIsFocused: Bool
     @State private var isLoading = false
     @State private var hasError = false
     @State private var errorText = ""
@@ -19,7 +20,7 @@ struct AddFeedView: View {
         VStack {
             Form {
                 Text(L10n.AddNewFeed.instruction)
-                TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrl)
+                TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrlString)
                     .frame(height: 44)
                     .autocapitalization(.none)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
@@ -28,7 +29,8 @@ struct AddFeedView: View {
                             .stroke(hasError ? Color.red : Color.gray)
                     )
                     .disableAutocorrection(true)
-                    .onChange(of: feedUrl) { _ in
+                    .focused($textFieldIsFocused)
+                    .onChange(of: feedUrlString) { _ in
                         hasError = false
                     }
 
@@ -49,7 +51,7 @@ struct AddFeedView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(feedUrl.count < 3)
+                .disabled(feedUrlString.count < 3)
                 .listRowSeparator(.hidden)
             }
 
@@ -73,10 +75,11 @@ struct AddFeedView: View {
     }
 
     private func startScanningFeed() {
-        guard let url = URL(string: feedUrl) else {
+        guard let url = URL(string: feedUrlString) else {
             return
         }
 
+        textFieldIsFocused = false
         foundRssFeeds = []
         isLoading = true
         hasError = false
@@ -106,7 +109,7 @@ struct AddFeedView: View {
             }
 
             if let url = URL(string: link), url.host == nil {
-                link = feedUrl + link
+                link = feedUrlString + link
             }
 
             guard let url = URL(string: link) else {
