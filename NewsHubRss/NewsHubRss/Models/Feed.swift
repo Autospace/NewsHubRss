@@ -31,6 +31,7 @@ struct Feed: Identifiable {
                 switch feed {
                 case .atom:
                     assertionFailure("Need to implement functionality to work with atom feed")
+                    completion([])
                 case .rss(let rssFeed):
                     if let items = rssFeed.items {
                         var feedItems: [FeedItem] = []
@@ -38,12 +39,16 @@ struct Feed: Identifiable {
                             feedItems.append(FeedItem(id: index, feedData: item))
                         }
                         completion(feedItems)
+                    } else {
+                        completion([])
                     }
                 case .json:
                     assertionFailure("Need to implement functionality to work with JSON feed")
+                    completion([])
                 }
             case .failure(let error):
                 assertionFailure("\(error.localizedDescription)")
+                completion([])
             }
         }
     }

@@ -112,7 +112,7 @@ struct AddFeedView: View {
                 link = feedUrlString + link
             }
 
-            guard let url = URL(string: link) else {
+            guard let url = URL(string: link), url.scheme != "http" else {
                 continue
             }
 
