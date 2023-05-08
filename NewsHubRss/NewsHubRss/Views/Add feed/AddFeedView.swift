@@ -14,11 +14,11 @@ struct AddFeedView: View {
     @State private var isLoading = false
     @State private var hasError = false
     @State private var errorText = ""
-    @State private var foundRssFeeds: [String] = []
+    @State private var foundFeeds: [Feed] = []
 
     var body: some View {
         VStack {
-            Form {
+            VStack {
                 Text(L10n.AddNewFeed.instruction)
                 TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrlString)
                     .frame(height: 44)
@@ -51,9 +51,10 @@ struct AddFeedView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(feedUrlString.count < 3)
+                .disabled(feedUrlString.count < 3 || isLoading)
                 .listRowSeparator(.hidden)
             }
+            .padding()
 
             if isLoading {
                 HStack {
@@ -64,8 +65,8 @@ struct AddFeedView: View {
             }
 
             List {
-                ForEach(foundRssFeeds, id: \.self) { item in
-                    FoundFeedView(feedURLString: item)
+                ForEach(foundFeeds) { item in
+                    FoundFeedView(feedTitle: item.title, feedURLString: item.link)
                 }
             }
             .listStyle(.inset)
@@ -80,7 +81,7 @@ struct AddFeedView: View {
         }
 
         textFieldIsFocused = false
-        foundRssFeeds = []
+        foundFeeds = []
         isLoading = true
         hasError = false
         Networking.getRSSPageOfSite(by: url) { result in
@@ -118,9 +119,36 @@ struct AddFeedView: View {
 
             group.enter()
             Networking.detectRssFeed(by: url) { isRSS in
-                group.leave()
                 if isRSS {
-                    foundRssFeeds.append(url.absoluteString)
+                    Networking.loadFeedData(by: url.absoluteString) { feed in
+                        switch feed {
+                        case .atom(let atomFeed):
+                            foundFeeds.append(Feed(
+                                id: Int.random(in: 0...1000),
+                                title: atomFeed.title ?? "",
+                                link: url.absoluteString
+                            ))
+                        case .rss(let rssFeed):
+                            foundFeeds.append(Feed(
+                                id: Int.random(in: 0...1000),
+                                title: rssFeed.title ?? "",
+                                link: url.absoluteString
+                            ))
+                        case .json(let jsonFeed):
+                            foundFeeds.append(Feed(
+                                id: Int.random(in: 0...1000),
+                                title: jsonFeed.title ?? "",
+                                link: url.absoluteString
+                            ))
+
+                        case .none:
+                            ()
+                        }
+
+                        group.leave()
+                    }
+                } else {
+                    group.leave()
                 }
             }
         }

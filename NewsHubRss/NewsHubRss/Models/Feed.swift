@@ -8,7 +8,7 @@
 import Foundation
 import FeedKit
 
-struct Feed: Identifiable {
+struct Feed: Identifiable, Hashable {
     struct FeedItem: Identifiable {
         let id: Int
         let feedData: RSSFeedItem

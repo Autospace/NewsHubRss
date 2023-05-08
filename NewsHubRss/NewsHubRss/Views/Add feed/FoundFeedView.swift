@@ -13,12 +13,20 @@ struct FoundFeedView: View {
         let feedsURLs = modelData.feeds.map { $0.link }
         return feedsURLs.contains(feedURLString)
     }
+    let feedTitle: String
     let feedURLString: String
 
     var body: some View {
         HStack {
-            Text(feedURLString)
+            VStack(alignment: .leading, spacing: 12) {
+                Text(feedTitle.trimmingCharacters(in: .whitespacesAndNewlines))
+                Text(feedURLString)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+            }
+
             Spacer()
+
             if feedAlreadySaved {
                 Label {
 
@@ -32,7 +40,7 @@ struct FoundFeedView: View {
                     modelData.feeds.append(
                         Feed(
                             id: (modelData.feeds.last?.id ?? 999_999) + 1,
-                            title: feedURLString, link: feedURLString
+                            title: feedTitle, link: feedURLString
                         )
                     )
                 }
@@ -44,6 +52,7 @@ struct FoundFeedView: View {
 
 struct FoundFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FoundFeedView(feedURLString: "https://foundfeedurl.xyz")
+        FoundFeedView(feedTitle: "Test title", feedURLString: "https://foundfeedurl.xyz")
+            .environmentObject(ModelData())
     }
 }

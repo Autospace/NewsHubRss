@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FeedKit
 
 struct NetworkError: Error {}
 
@@ -34,6 +35,11 @@ struct Networking {
     }
 
     static func detectRssFeed(by url: URL, completion: @escaping (_ isRSS: Bool) -> Void) {
+        guard url.scheme == "https" else { // we should skip unsafe http connection
+            completion(false)
+            return
+        }
+
         let session = URLSession(configuration: .ephemeral)
         var request = URLRequest(url: url)
         request.httpMethod = "Head"
@@ -49,5 +55,23 @@ struct Networking {
         }
 
         dataTask.resume()
+    }
+
+    static func loadFeedData(by feedUrlString: String, completion: @escaping (_ feed: FeedKit.Feed?) -> Void) {
+        guard let feedUrl = URL(string: feedUrlString) else {
+            completion(nil)
+            return
+        }
+
+        let parser = FeedParser(URL: feedUrl)
+        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
+            switch result {
+            case .success(let feed):
+                completion(feed)
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(nil)
+            }
+        }
     }
 }
