@@ -29,6 +29,7 @@ struct FeedItemsListView: View {
                         selectedFeedItem = item
                     }
                 }
+                .onDelete(perform: deleteItems)
             }
             .refreshable {
                 loadData(showLoadingIndicator: false)
@@ -38,6 +39,9 @@ struct FeedItemsListView: View {
                 if let link = selectedFeedItem.feedData.link, let url = URL(string: link) {
                     SafariView(url: url)
                 }
+            }
+            .toolbar {
+                EditButton()
             }
         }
         .navigationTitle(feed.title)
@@ -55,6 +59,10 @@ struct FeedItemsListView: View {
             isLoading = false
             self.feedItems = feedItems
         }
+    }
+
+    private func deleteItems(at offsets: IndexSet) {
+        feedItems.remove(atOffsets: offsets)
     }
 }
 
