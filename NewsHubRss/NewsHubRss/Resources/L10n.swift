@@ -35,6 +35,28 @@ internal enum L10n {
     /// Main
     internal static let title = L10n.tr("Localizable", "mainPage.title", fallback: "Main")
   }
+  internal enum Settings {
+    internal enum Displaying {
+      /// Displaying
+      internal static let title = L10n.tr("Localizable", "settings.displaying.title", fallback: "Displaying")
+      internal enum Theme {
+        /// Theme
+        internal static let title = L10n.tr("Localizable", "settings.displaying.theme.title", fallback: "Theme")
+        internal enum Dark {
+          /// Dark
+          internal static let title = L10n.tr("Localizable", "settings.displaying.theme.dark.title", fallback: "Dark")
+        }
+        internal enum Light {
+          /// Light
+          internal static let title = L10n.tr("Localizable", "settings.displaying.theme.light.title", fallback: "Light")
+        }
+        internal enum System {
+          /// System
+          internal static let title = L10n.tr("Localizable", "settings.displaying.theme.system.title", fallback: "System")
+        }
+      }
+    }
+  }
   internal enum SettingsPage {
     /// Settings
     internal static let title = L10n.tr("Localizable", "settingsPage.title", fallback: "Settings")

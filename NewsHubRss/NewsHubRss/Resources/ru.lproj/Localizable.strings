@@ -21,3 +21,10 @@
 "addNewFeed.textField.placeholder" = "URL фида";
 "addNewFeed.scanButtonTitle" = "Сканировать";
 "addNewFeed.buttonTitle" = "Добавить";
+
+// MARK: - Settings
+"settings.displaying.title" = "Отображение";
+"settings.displaying.theme.title" = "Тема";
+"settings.displaying.theme.system.title" = "Системная";
+"settings.displaying.theme.dark.title" = "Тёмная";
+"settings.displaying.theme.light.title" = "Светлая";
