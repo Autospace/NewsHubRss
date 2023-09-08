@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import FeedKit
 
 struct FeedItemsListView: View {
-    let feed: Feed
-    @State private var feedItems: [Feed.FeedItem] = []
-    @State private var selectedFeedItem: Feed.FeedItem?
+    let feed: DBFeed
+    @State private var feedItems: [FeedItem] = []
+    @State private var selectedFeedItem: FeedItem?
     @State private var isLoading: Bool = false
 
     var body: some View {
@@ -55,7 +54,7 @@ struct FeedItemsListView: View {
         if showLoadingIndicator {
             isLoading = true
         }
-        feed.loadFeedItems { feedItems in
+        Networking.loadFeedItems(feedUrl: feed.url) { feedItems in
             isLoading = false
             self.feedItems = feedItems
         }
@@ -68,6 +67,6 @@ struct FeedItemsListView: View {
 
 struct FeedItemsList_Previews: PreviewProvider {
     static var previews: some View {
-        FeedItemsListView(feed: ModelData().feeds[0])
+        FeedItemsListView(feed: DBFeed())
     }
 }

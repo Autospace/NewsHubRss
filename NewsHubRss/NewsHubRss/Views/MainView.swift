@@ -28,7 +28,6 @@ struct MainView_Previews: PreviewProvider {
         Group {
             MainView()
                 .environment(\.locale, .init(identifier: "ru"))
-                .environmentObject(ModelData())
         }
     }
 }

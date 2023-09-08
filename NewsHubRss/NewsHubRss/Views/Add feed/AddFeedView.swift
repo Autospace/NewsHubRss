@@ -14,7 +14,9 @@ struct AddFeedView: View {
     @State private var isLoading = false
     @State private var hasError = false
     @State private var errorText = ""
-    @State private var foundFeeds: [Feed] = []
+    @State private var foundFeeds: [FoundFeed] = []
+
+    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         VStack {
@@ -123,19 +125,19 @@ struct AddFeedView: View {
                     Networking.loadFeedData(by: url.absoluteString) { feed in
                         switch feed {
                         case .atom(let atomFeed):
-                            foundFeeds.append(Feed(
+                            foundFeeds.append(FoundFeed(
                                 id: Int.random(in: 0...1000),
                                 title: atomFeed.title ?? "",
                                 link: url.absoluteString
                             ))
                         case .rss(let rssFeed):
-                            foundFeeds.append(Feed(
+                            foundFeeds.append(FoundFeed(
                                 id: Int.random(in: 0...1000),
                                 title: rssFeed.title ?? "",
                                 link: url.absoluteString
                             ))
                         case .json(let jsonFeed):
-                            foundFeeds.append(Feed(
+                            foundFeeds.append(FoundFeed(
                                 id: Int.random(in: 0...1000),
                                 title: jsonFeed.title ?? "",
                                 link: url.absoluteString

@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct NewsHubRssApp: App {
-    @StateObject private var modelData = ModelData()
+    let dataController = DataController.shared
 
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(modelData)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

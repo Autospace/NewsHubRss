@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var modelData: ModelData
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(entity: DBFeed.entity(), sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)])
+    private var dbFeeds: FetchedResults<DBFeed>
 
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(modelData.feeds) { feed in
+                    ForEach(dbFeeds) { dbFeed in
                         NavigationLink {
-                            FeedItemsListView(feed: feed)
+                            FeedItemsListView(feed: dbFeed)
                         } label: {
-                            Text(feed.title)
+                            Text(dbFeed.title)
                         }
                     }
                 }
@@ -38,6 +41,5 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(ModelData())
     }
 }

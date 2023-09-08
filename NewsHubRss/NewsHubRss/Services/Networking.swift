@@ -74,4 +74,39 @@ struct Networking {
             }
         }
     }
+
+    static func loadFeedItems(feedUrl: String, completion: @escaping (_ feedItems: [FeedItem]) -> Void) {
+        guard let feedUrl = URL(string: feedUrl) else {
+            completion([])
+            return
+        }
+
+        let parser = FeedParser(URL: feedUrl)
+        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
+            switch result {
+            case .success(let feed):
+                switch feed {
+                case .atom:
+                    assertionFailure("Need to implement functionality to work with atom feed")
+                    completion([])
+                case .rss(let rssFeed):
+                    if let items = rssFeed.items {
+                        var feedItems: [FeedItem] = []
+                        for (index, item) in items.enumerated() {
+                            feedItems.append(FeedItem(id: index, feedData: item))
+                        }
+                        completion(feedItems)
+                    } else {
+                        completion([])
+                    }
+                case .json:
+                    assertionFailure("Need to implement functionality to work with JSON feed")
+                    completion([])
+                }
+            case .failure(let error):
+                assertionFailure("\(error.localizedDescription)")
+                completion([])
+            }
+        }
+    }
 }
