@@ -126,19 +126,19 @@ struct AddFeedView: View {
                         switch feed {
                         case .atom(let atomFeed):
                             foundFeeds.append(FoundFeed(
-                                id: Int.random(in: 0...1000),
+                                id: foundFeeds.count,
                                 title: atomFeed.title ?? "",
                                 link: url.absoluteString
                             ))
                         case .rss(let rssFeed):
                             foundFeeds.append(FoundFeed(
-                                id: Int.random(in: 0...1000),
+                                id: foundFeeds.count,
                                 title: rssFeed.title ?? "",
                                 link: url.absoluteString
                             ))
                         case .json(let jsonFeed):
                             foundFeeds.append(FoundFeed(
-                                id: Int.random(in: 0...1000),
+                                id: foundFeeds.count,
                                 title: jsonFeed.title ?? "",
                                 link: url.absoluteString
                             ))

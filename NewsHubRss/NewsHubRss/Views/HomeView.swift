@@ -24,6 +24,10 @@ struct HomeView: View {
                             Text(dbFeed.title)
                         }
                     }
+                    .onMove { indexSet, intValue in
+                        print("Index set: \(indexSet), IntValue: \(intValue)")
+                    }
+                    .onDelete(perform: deleteItems)
                 }
                 .toolbar {
                     NavigationLink {
@@ -35,6 +39,10 @@ struct HomeView: View {
             }
             .navigationTitle(L10n.MainPage.title)
         }
+    }
+
+    private func deleteItems(at offsets: IndexSet) {
+        print(offsets)
     }
 }
 
