@@ -10,7 +10,11 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(entity: DBFeed.entity(), sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)])
+    @FetchRequest(
+        entity: DBFeed.entity(),
+        sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)]
+    )
+
     private var dbFeeds: FetchedResults<DBFeed>
 
     var body: some View {
@@ -42,7 +46,13 @@ struct HomeView: View {
     }
 
     private func deleteItems(at offsets: IndexSet) {
-        print(offsets)
+        guard let firstIndex = offsets.first else {
+            return
+        }
+
+        let itemToDelete = dbFeeds[firstIndex]
+        viewContext.delete(itemToDelete)
+        try? viewContext.save()
     }
 }
 
