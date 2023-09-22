@@ -13,7 +13,7 @@ struct FeedItemView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(title)
+            Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
             Text(getDateString())
                 .font(.system(size: 12))
                 .foregroundColor(.gray)
