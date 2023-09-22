@@ -48,10 +48,15 @@ struct Networking {
                 httpResponse.statusCode == 200,
                 let contentType = httpResponse.allHeaderFields["Content-Type"] as? String else {
                 completion(false)
+
                 return
             }
 
-            completion(contentType.hasPrefix("application/rss+xml") || contentType.hasPrefix("application/xml"))
+            let isRss = contentType.hasPrefix("application/rss+xml")
+                        || contentType.hasPrefix("application/xml")
+                        || contentType.hasPrefix("text/xml")
+
+            completion(isRss)
         }
 
         dataTask.resume()

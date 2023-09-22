@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftSoup
+import FeedKit
 
 struct AddFeedView: View {
     @State private var feedUrlString = "https://"
@@ -15,6 +16,8 @@ struct AddFeedView: View {
     @State private var hasError = false
     @State private var errorText = ""
     @State private var foundFeeds: [FoundFeed] = []
+
+    @State private var searchUrl: URL?
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -82,18 +85,28 @@ struct AddFeedView: View {
             return
         }
 
+        searchUrl = url
         textFieldIsFocused = false
         foundFeeds = []
         isLoading = true
         hasError = false
-        Networking.getRSSPageOfSite(by: url) { result in
-            switch result {
-            case .failure(let error):
-                isLoading = false
-                hasError = true
-                errorText = error.localizedDescription
-            case .success(let htmlDocument):
-                parseHtmlDocumentToFindRssFeeds(htmlDocument)
+        Networking.detectRssFeed(by: url) { isRSS in
+            if isRSS {
+                Networking.loadFeedData(by: url.absoluteString) { feed in
+                    addFeedToFoundFeeds(url: url, feed: feed)
+                    isLoading = false
+                }
+            } else {
+                Networking.getRSSPageOfSite(by: url) { result in
+                    switch result {
+                    case .failure(let error):
+                        isLoading = false
+                        hasError = true
+                        errorText = error.localizedDescription
+                    case .success(let htmlDocument):
+                        parseHtmlDocumentToFindRssFeeds(htmlDocument)
+                    }
+                }
             }
         }
     }
@@ -112,7 +125,12 @@ struct AddFeedView: View {
             }
 
             if let url = URL(string: link), url.host == nil {
-                link = feedUrlString + link
+                if let searchUrl = searchUrl, let scheme = searchUrl.scheme, let host = searchUrl.host {
+                    link = "\(scheme)://\(host)\(link)"
+                } else {
+                    assertionFailure()
+                    link = feedUrlString + link
+                }
             }
 
             guard let url = URL(string: link), url.scheme != "http" else {
@@ -123,30 +141,7 @@ struct AddFeedView: View {
             Networking.detectRssFeed(by: url) { isRSS in
                 if isRSS {
                     Networking.loadFeedData(by: url.absoluteString) { feed in
-                        switch feed {
-                        case .atom(let atomFeed):
-                            foundFeeds.append(FoundFeed(
-                                id: foundFeeds.count,
-                                title: atomFeed.title ?? "",
-                                link: url.absoluteString
-                            ))
-                        case .rss(let rssFeed):
-                            foundFeeds.append(FoundFeed(
-                                id: foundFeeds.count,
-                                title: rssFeed.title ?? "",
-                                link: url.absoluteString
-                            ))
-                        case .json(let jsonFeed):
-                            foundFeeds.append(FoundFeed(
-                                id: foundFeeds.count,
-                                title: jsonFeed.title ?? "",
-                                link: url.absoluteString
-                            ))
-
-                        case .none:
-                            ()
-                        }
-
+                        addFeedToFoundFeeds(url: url, feed: feed)
                         group.leave()
                     }
                 } else {
@@ -157,6 +152,35 @@ struct AddFeedView: View {
 
         group.notify(queue: .main) {
             isLoading = false
+        }
+    }
+
+    private func addFeedToFoundFeeds(url: URL, feed: Feed?) {
+        guard let feed = feed else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            switch feed {
+            case .atom(let atomFeed):
+                foundFeeds.append(FoundFeed(
+                    id: foundFeeds.count,
+                    title: atomFeed.title ?? "",
+                    link: url.absoluteString
+                ))
+            case .rss(let rssFeed):
+                foundFeeds.append(FoundFeed(
+                    id: foundFeeds.count,
+                    title: rssFeed.title ?? "",
+                    link: url.absoluteString
+                ))
+            case .json(let jsonFeed):
+                foundFeeds.append(FoundFeed(
+                    id: foundFeeds.count,
+                    title: jsonFeed.title ?? "",
+                    link: url.absoluteString
+                ))
+            }
         }
     }
 }
