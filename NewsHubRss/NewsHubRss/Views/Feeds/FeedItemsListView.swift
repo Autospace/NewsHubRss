@@ -28,10 +28,13 @@ struct FeedItemsListView: View {
                 ForEach(dbFeedItems) { item in
                     FeedItemView(
                         title: item.title,
-                        date: item.pubDate
+                        date: item.pubDate,
+                        hasRead: item.hasRead
                     )
                     .onTapGesture {
                         selectedFeedItem = item
+                        item.hasRead = true
+                        try? viewContext.save()
                     }
                 }
                 .onDelete(perform: deleteItems)

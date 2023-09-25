@@ -10,10 +10,12 @@ import SwiftUI
 struct FeedItemView: View {
     let title: String
     let date: Date
+    var hasRead: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
+                .foregroundColor(hasRead ? .gray : .black)
             Text(getDateString())
                 .font(.system(size: 12))
                 .foregroundColor(.gray)
