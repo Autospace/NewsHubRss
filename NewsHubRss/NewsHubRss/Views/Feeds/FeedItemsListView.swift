@@ -34,7 +34,6 @@ struct FeedItemsListView: View {
                     .onTapGesture {
                         selectedFeedItem = item
                         item.hasRead = true
-                        try? viewContext.save()
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -101,7 +100,6 @@ struct FeedItemsListView: View {
                 dbFeedItem.pubDate = pubDate
             }
 
-            try? viewContext.save()
             isLoading = false
         }
     }
@@ -110,8 +108,6 @@ struct FeedItemsListView: View {
         for index in offsets {
             dbFeedItems[index].hasDeleted = true
         }
-
-        try? viewContext.save()
     }
 }
 
