@@ -10,7 +10,7 @@ import CoreData
 class DBFeedItem: NSManagedObject, Identifiable {
     @NSManaged var guid: String
     @NSManaged var title: String
-    @NSManaged var url: String
+    @NSManaged var link: String
     @NSManaged var pubDate: Date
     @NSManaged var hasRead: Bool
     @NSManaged var hasDeleted: Bool
