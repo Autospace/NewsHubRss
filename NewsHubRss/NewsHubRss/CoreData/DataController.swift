@@ -16,7 +16,7 @@ struct DataController {
     init() {
         container = NSPersistentContainer(name: "Database")
 
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 print("Core Data failed to load: \(error.localizedDescription) ")
             }

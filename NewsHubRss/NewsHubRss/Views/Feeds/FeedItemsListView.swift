@@ -13,11 +13,6 @@ struct FeedItemsListView: View {
     let feed: DBFeed
     @State private var selectedFeedItem: DBFeedItem?
     @State private var isLoading: Bool = false
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.pubDate, order: .reverse)],
-        predicate: NSPredicate(format: "hasDeleted == false")
-    )
-    private var dbFeedItems: FetchedResults<DBFeedItem>
 
     var body: some View {
         VStack {
@@ -25,7 +20,7 @@ struct FeedItemsListView: View {
                 ProgressView()
             }
             List {
-                ForEach(dbFeedItems) { item in
+                ForEach(feed.feedItems) { item in
                     FeedItemView(
                         title: item.title,
                         date: item.pubDate,
@@ -63,12 +58,7 @@ struct FeedItemsListView: View {
             isLoading = true
         }
         Networking.loadFeedItems(feedUrl: feed.url) { feedItems in
-            let fetchRequest = DBFeedItem.fetchRequest()
-            fetchRequest.fetchLimit = 1
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "pubDate", ascending: false)]
-            let fetchResult = try? viewContext.fetch(fetchRequest)
-
-            let lastSavedItem = fetchResult?.first as? DBFeedItem
+            let lastSavedItem = feed.feedItems.first
             if let lastSavedItem = lastSavedItem, let lastFeedItemPubDate = feedItems.sorted(by: { item1, item2 in
                 guard let pubDate1 = item1.feedData.pubDate, let pubDate2 = item2.feedData.pubDate else {
                     return false
@@ -98,6 +88,7 @@ struct FeedItemsListView: View {
                 dbFeedItem.link = link
                 dbFeedItem.guid = feedItem.feedData.guid?.value ?? link
                 dbFeedItem.pubDate = pubDate
+                dbFeedItem.dbFeed = feed
             }
 
             isLoading = false
@@ -106,7 +97,7 @@ struct FeedItemsListView: View {
 
     private func deleteItems(at offsets: IndexSet) {
         for index in offsets {
-            dbFeedItems[index].hasDeleted = true
+            feed.feedItems[index].hasDeleted = true
         }
     }
 }
