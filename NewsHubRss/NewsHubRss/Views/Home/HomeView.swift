@@ -33,13 +33,6 @@ struct HomeView: View {
                     }
                     .onDelete(perform: deleteItems)
                 }
-                .toolbar {
-                    NavigationLink {
-                        AddFeedView()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
             }
             .navigationTitle(L10n.MainPage.title)
         }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1013A3442AC49CFF00D7CE84 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1013A3432AC49CFF00D7CE84 /* FavoritesView.swift */; };
+		1013A3492AC4A07700D7CE84 /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1013A3482AC4A07700D7CE84 /* OtherView.swift */; };
 		101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */; };
 		101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F729ABD0AD00879AA5 /* MainView.swift */; };
 		101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F929ABD0CA00879AA5 /* SettingsView.swift */; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileReference section */
 		063C8ED9B2D80EAB6A868CAD /* Pods-NewsHubRssTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsHubRssTests.release.xcconfig"; path = "Target Support Files/Pods-NewsHubRssTests/Pods-NewsHubRssTests.release.xcconfig"; sourceTree = "<group>"; };
 		0ACB0547BF97A9EA20BC7B3B /* Pods_NewsHubRss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsHubRss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1013A3432AC49CFF00D7CE84 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		1013A3482AC4A07700D7CE84 /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedView.swift; sourceTree = "<group>"; };
 		101FC4F729ABD0AD00879AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		101FC4F929ABD0CA00879AA5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		1013A3422AC49CC100D7CE84 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				1013A3432AC49CFF00D7CE84 /* FavoritesView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		1013A3452AC49D5C00D7CE84 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5FA579FE28C941360009C5C8 /* HomeView.swift */,
+				106399E029EDE92E007B5DD0 /* Feeds */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1013A3462AC49D8B00D7CE84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1013A3472AC4A06200D7CE84 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1013A3482AC4A07700D7CE84 /* OtherView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		105F77252A0EB9B300AA97B8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,10 +198,11 @@
 			isa = PBXGroup;
 			children = (
 				101FC4F729ABD0AD00879AA5 /* MainView.swift */,
-				106399E029EDE92E007B5DD0 /* Feeds */,
+				1013A3452AC49D5C00D7CE84 /* Home */,
+				1013A3472AC4A06200D7CE84 /* Other */,
 				1096BD962A02DE5F00DBE83E /* Add feed */,
-				5FA579FE28C941360009C5C8 /* HomeView.swift */,
-				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
+				1013A3422AC49CC100D7CE84 /* Favorites */,
+				1013A3462AC49D8B00D7CE84 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -577,6 +615,8 @@
 				10CAD3522A1A4051008F2FA7 /* DataController.swift in Sources */,
 				10861BA729B26B4F0082F8B3 /* ImageAssets.swift in Sources */,
 				5FA579FD28C941360009C5C8 /* NewsHubRssApp.swift in Sources */,
+				1013A3442AC49CFF00D7CE84 /* FavoritesView.swift in Sources */,
+				1013A3492AC4A07700D7CE84 /* OtherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
