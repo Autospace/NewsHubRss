@@ -35,6 +35,8 @@ internal enum Asset {
   internal static let otherIconSelected = ImageAsset(name: "otherIconSelected")
   internal static let settingsIcon = ImageAsset(name: "settingsIcon")
   internal static let settingsIconSelected = ImageAsset(name: "settingsIconSelected")
+  internal static let checkmarkIcon = ImageAsset(name: "checkmarkIcon")
+  internal static let plusIcon = ImageAsset(name: "plusIcon")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

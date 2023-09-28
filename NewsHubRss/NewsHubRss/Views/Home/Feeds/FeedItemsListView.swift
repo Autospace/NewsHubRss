@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct FeedItemsListView: View {
     @Environment(\.managedObjectContext) private var viewContext

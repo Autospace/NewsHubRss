@@ -32,15 +32,11 @@ struct FoundFeedView: View {
             Spacer()
 
             if feedAlreadySaved {
-                Label {
-
-                } icon: {
-                    Image(systemName: "checkmark.square")
-                        .shadow(color: .green, radius: 4)
-                }
-                .foregroundColor(.green)
+                Image(uiImage: Asset.checkmarkIcon.image.withRenderingMode(.alwaysOriginal))
+                    .resizable()
+                    .frame(width: 26, height: 26)
             } else {
-                Button(L10n.Common.add) {
+                Button(action: {
                     let dbFeed = DBFeed(context: viewContext)
                     dbFeed.id = UUID()
                     dbFeed.title = feedTitle
@@ -48,8 +44,11 @@ struct FoundFeedView: View {
                     dbFeed.sortOrderPosition = (dbFeeds.last?.sortOrderPosition ?? 0) + 1
 
                     saveContext()
-                }
-                .buttonStyle(.borderedProminent)
+                }, label: {
+                    Image(uiImage: Asset.plusIcon.image.withRenderingMode(.alwaysOriginal))
+                        .resizable()
+                        .frame(width: 26, height: 26)
+                })
             }
         }
     }
