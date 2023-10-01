@@ -23,7 +23,7 @@ struct MainView: View {
                           : Asset.homeIcon.image.withRenderingMode(.alwaysOriginal))
                 }
                 .tag(Tab.home)
-            
+
             OtherView()
                 .tabItem {
                     Image(uiImage: selectedTab == .other
