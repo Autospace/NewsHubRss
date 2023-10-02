@@ -24,6 +24,7 @@
 		109EEAA22AAB7A6E00F25B83 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109EEAA12AAB7A6E00F25B83 /* FeedItem.swift */; };
 		109EEAA42AAB7B2B00F25B83 /* FoundFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109EEAA32AAB7B2B00F25B83 /* FoundFeed.swift */; };
 		10B48BB52AC09FA7009F1286 /* DBFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B48BB42AC09FA7009F1286 /* DBFeedItem.swift */; };
+		10BD6F3A2ACB41790051034F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10BD6F392ACB41790051034F /* Launch Screen.storyboard */; };
 		10CAD3522A1A4051008F2FA7 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CAD3512A1A4051008F2FA7 /* DataController.swift */; };
 		10E655C629F728B40030606B /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E655C529F728B40030606B /* Networking.swift */; };
 		5FA579FD28C941360009C5C8 /* NewsHubRssApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA579FC28C941360009C5C8 /* NewsHubRssApp.swift */; };
@@ -80,6 +81,7 @@
 		109EEAA12AAB7A6E00F25B83 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		109EEAA32AAB7B2B00F25B83 /* FoundFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundFeed.swift; sourceTree = "<group>"; };
 		10B48BB42AC09FA7009F1286 /* DBFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFeedItem.swift; sourceTree = "<group>"; };
+		10BD6F392ACB41790051034F /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		10CAD3512A1A4051008F2FA7 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		10E655C529F728B40030606B /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		2CEDB917CD48D7F79DBA7874 /* Pods_NewsHubRss_NewsHubRssUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsHubRss_NewsHubRssUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +231,7 @@
 		10861BA329B26A6F0082F8B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				10BD6F392ACB41790051034F /* Launch Screen.storyboard */,
 				10861BA529B26B4F0082F8B3 /* ImageAssets.swift */,
 				10861BA429B26B4F0082F8B3 /* L10n.swift */,
 				5FA57A0028C9413C0009C5C8 /* Assets.xcassets */,
@@ -435,6 +438,7 @@
 			files = (
 				5FA57A0428C9413C0009C5C8 /* Preview Assets.xcassets in Resources */,
 				10861B9B29B132D20082F8B3 /* Localizable.strings in Resources */,
+				10BD6F3A2ACB41790051034F /* Launch Screen.storyboard in Resources */,
 				5FA57A0128C9413C0009C5C8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,6 +804,7 @@
 				INFOPLIST_FILE = NewsHubRss/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -838,6 +843,7 @@
 				INFOPLIST_FILE = NewsHubRss/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
