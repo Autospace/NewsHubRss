@@ -8,6 +8,9 @@
 
 // MARK: - Common strings
 "common.add" = "Добавить";
+"common.attention" = "Внимание!";
+"common.cancel" = "Отмена";
+"common.proceed" = "Продолжить";
 
 // MARK: - Main page
 "mainPage.title" = "Главная";
@@ -21,6 +24,8 @@
 "addNewFeed.textField.placeholder" = "URL фида";
 "addNewFeed.scanButtonTitle" = "Сканировать";
 "addNewFeed.buttonTitle" = "Добавить";
+
+"deleteFoundFeed.alert.message" = "Вы пытаетесь удалить канал с сохраненными элементами, связанными с ним. При нажатии кнопки «Продолжить» они также будут удалены. Вы уверены?";
 
 // MARK: - Settings
 "settings.displaying.title" = "Отображение";

@@ -8,6 +8,9 @@
 
 // MARK: - Common strings
 "common.add" = "Add";
+"common.attention" = "Attention!";
+"common.cancel" = "Cancel";
+"common.proceed" = "Proceed";
 
 // MARK: - Main page
 "mainPage.title" = "Main";
@@ -21,6 +24,8 @@
 "addNewFeed.textField.placeholder" = "Feed URL";
 "addNewFeed.scanButtonTitle" = "Scan";
 "addNewFeed.buttonTitle" = "Add";
+
+"deleteFoundFeed.alert.message" = "You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?";
 
 // MARK: - Settings
 "settings.displaying.title" = "Displaying";

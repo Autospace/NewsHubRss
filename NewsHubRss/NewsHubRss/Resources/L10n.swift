@@ -30,6 +30,18 @@ internal enum L10n {
     /// 
     ///   Created by Aliaksei Mastounikau on 2.03.23.
     internal static let add = L10n.tr("Localizable", "common.add", fallback: "Add")
+    /// Attention!
+    internal static let attention = L10n.tr("Localizable", "common.attention", fallback: "Attention!")
+    /// Cancel
+    internal static let cancel = L10n.tr("Localizable", "common.cancel", fallback: "Cancel")
+    /// Proceed
+    internal static let proceed = L10n.tr("Localizable", "common.proceed", fallback: "Proceed")
+  }
+  internal enum DeleteFoundFeed {
+    internal enum Alert {
+      /// You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?
+      internal static let message = L10n.tr("Localizable", "deleteFoundFeed.alert.message", fallback: "You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?")
+    }
   }
   internal enum MainPage {
     /// Main

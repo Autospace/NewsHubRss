@@ -10,8 +10,9 @@ import SwiftUI
 struct FoundFeedView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(entity: DBFeed.entity(), sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)])
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)])
     private var dbFeeds: FetchedResults<DBFeed>
+    @State private var showingDeleteFeedAlert: Bool = false
 
     private var feedAlreadySaved: Bool {
         let feedsURLs = dbFeeds.map { $0.url }
@@ -32,9 +33,25 @@ struct FoundFeedView: View {
             Spacer()
 
             if feedAlreadySaved {
-                Image(uiImage: Asset.checkmarkIcon.image.withRenderingMode(.alwaysOriginal))
-                    .resizable()
-                    .frame(width: 26, height: 26)
+                Button(action: {
+                    deleteFeed(with: feedURLString)
+                }, label: {
+                    Image(uiImage: Asset.checkmarkIcon.image.withRenderingMode(.alwaysOriginal))
+                        .resizable()
+                        .frame(width: 26, height: 26)
+                })
+                .alert(isPresented: $showingDeleteFeedAlert) {
+                    Alert(
+                        title: Text(L10n.Common.attention),
+                        message: Text(L10n.DeleteFoundFeed.Alert.message),
+                        primaryButton: .default(Text(L10n.Common.cancel)),
+                        secondaryButton: .destructive(
+                            Text(L10n.Common.proceed),
+                            action: {
+                                deleteFeed(with: feedURLString, force: true)
+                            }
+                        ))
+                }
             } else {
                 Button(action: {
                     let dbFeed = DBFeed(context: viewContext)
@@ -49,6 +66,16 @@ struct FoundFeedView: View {
                         .resizable()
                         .frame(width: 26, height: 26)
                 })
+            }
+        }
+    }
+
+    private func deleteFeed(with url: String, force: Bool = false) {
+        if let foundFeed = dbFeeds.first(where: {$0.url == feedURLString}) {
+            if foundFeed.feedItems.count > 0, !force {
+                showingDeleteFeedAlert = true
+            } else {
+                viewContext.delete(foundFeed)
             }
         }
     }
