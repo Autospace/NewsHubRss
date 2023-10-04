@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.colorScheme) private var colorScheme
     @State private var selectedTab: Tab = .home
 
     enum Tab {
@@ -20,7 +21,8 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .home
                           ? Asset.homeIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.homeIcon.image.withRenderingMode(.alwaysOriginal))
+                          : Asset.homeIcon.image.withRenderingMode(.alwaysTemplate)
+                                .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.home)
 
@@ -28,7 +30,8 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .other
                           ? Asset.otherIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.otherIcon.image.withRenderingMode(.alwaysOriginal))
+                          : Asset.otherIcon.image.withRenderingMode(.alwaysTemplate)
+                                .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.other)
 
@@ -36,7 +39,8 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .add
                           ? Asset.addIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.addIcon.image.withRenderingMode(.alwaysOriginal))
+                          : Asset.addIcon.image.withRenderingMode(.alwaysTemplate)
+                                .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.add)
 
@@ -44,7 +48,8 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .favorites
                           ? Asset.bookmarkIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.bookmarkIcon.image.withRenderingMode(.alwaysOriginal))
+                          : Asset.bookmarkIcon.image.withRenderingMode(.alwaysTemplate)
+                                .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.favorites)
 
@@ -52,7 +57,8 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .settings
                           ? Asset.settingsIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.settingsIcon.image.withRenderingMode(.alwaysOriginal))
+                          : Asset.settingsIcon.image.withRenderingMode(.alwaysOriginal)
+                                .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.settings)
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FoundFeedView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) private var colorScheme
 
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)])
     private var dbFeeds: FetchedResults<DBFeed>
@@ -62,9 +63,11 @@ struct FoundFeedView: View {
 
                     saveContext()
                 }, label: {
-                    Image(uiImage: Asset.plusIcon.image.withRenderingMode(.alwaysOriginal))
-                        .resizable()
-                        .frame(width: 26, height: 26)
+                    Image(uiImage: Asset.plusIcon.image.withRenderingMode(.alwaysTemplate)
+                        .withTintColor(colorScheme == .dark ? .white : .black)
+                    )
+                    .resizable()
+                    .frame(width: 26, height: 26)
                 })
             }
         }
