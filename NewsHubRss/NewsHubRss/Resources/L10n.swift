@@ -36,6 +36,8 @@ internal enum L10n {
     internal static let cancel = L10n.tr("Localizable", "common.cancel", fallback: "Cancel")
     /// Proceed
     internal static let proceed = L10n.tr("Localizable", "common.proceed", fallback: "Proceed")
+    /// Save
+    internal static let save = L10n.tr("Localizable", "common.save", fallback: "Save")
   }
   internal enum DeleteFoundFeed {
     internal enum Alert {

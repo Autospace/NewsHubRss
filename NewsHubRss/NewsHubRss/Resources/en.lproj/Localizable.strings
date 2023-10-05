@@ -11,6 +11,7 @@
 "common.attention" = "Attention!";
 "common.cancel" = "Cancel";
 "common.proceed" = "Proceed";
+"common.save" = "Save";
 
 // MARK: - Main page
 "mainPage.title" = "Main";

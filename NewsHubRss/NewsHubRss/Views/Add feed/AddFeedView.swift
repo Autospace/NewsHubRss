@@ -18,6 +18,7 @@ struct AddFeedView: View {
     @State private var foundFeeds: [FoundFeed] = []
 
     @State private var searchUrl: URL?
+    @State private var showingFeedEditView: Bool = false
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -71,7 +72,14 @@ struct AddFeedView: View {
 
             List {
                 ForEach(foundFeeds) { item in
-                    FoundFeedView(feedTitle: item.title, feedURLString: item.link)
+                    FoundFeedView(feedTitle: item.title, feedURLString: item.link, tapHandler: {
+                        showingFeedEditView = true
+                    })
+                    .sheet(isPresented: $showingFeedEditView, content: {
+                        EditFeedView(feed: item) { newTitle in
+                            print(newTitle)
+                        }
+                    })
                 }
             }
             .listStyle(.inset)

@@ -21,6 +21,7 @@ struct FoundFeedView: View {
     }
     let feedTitle: String
     let feedURLString: String
+    let tapHandler: (() -> Void)
 
     var body: some View {
         HStack {
@@ -29,6 +30,9 @@ struct FoundFeedView: View {
                 Text(feedURLString)
                     .font(.footnote)
                     .foregroundColor(.gray)
+            }
+            .onTapGesture {
+                tapHandler()
             }
 
             Spacer()
@@ -95,6 +99,6 @@ struct FoundFeedView: View {
 
 struct FoundFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FoundFeedView(feedTitle: "Test title", feedURLString: "https://foundfeedurl.xyz")
+        FoundFeedView(feedTitle: "Test title", feedURLString: "https://foundfeedurl.xyz", tapHandler: {})
     }
 }

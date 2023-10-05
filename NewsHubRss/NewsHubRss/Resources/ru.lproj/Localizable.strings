@@ -11,6 +11,7 @@
 "common.attention" = "Внимание!";
 "common.cancel" = "Отмена";
 "common.proceed" = "Продолжить";
+"common.save" = "Сохранить";
 
 // MARK: - Main page
 "mainPage.title" = "Главная";

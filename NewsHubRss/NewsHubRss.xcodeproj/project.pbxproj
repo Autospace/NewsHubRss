@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1013A3442AC49CFF00D7CE84 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1013A3432AC49CFF00D7CE84 /* FavoritesView.swift */; };
 		1013A3492AC4A07700D7CE84 /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1013A3482AC4A07700D7CE84 /* OtherView.swift */; };
+		1017C3AC2ACF25810094CBA1 /* EditFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1017C3AB2ACF25810094CBA1 /* EditFeedView.swift */; };
 		101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */; };
 		101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F729ABD0AD00879AA5 /* MainView.swift */; };
 		101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F929ABD0CA00879AA5 /* SettingsView.swift */; };
@@ -62,6 +63,7 @@
 		1013A3432AC49CFF00D7CE84 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		1013A3482AC4A07700D7CE84 /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		1013A34A2AC9E15300D7CE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1017C3AB2ACF25810094CBA1 /* EditFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeedView.swift; sourceTree = "<group>"; };
 		101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedView.swift; sourceTree = "<group>"; };
 		101FC4F729ABD0AD00879AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		101FC4F929ABD0CA00879AA5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */,
 				1096BD972A02DE8400DBE83E /* FoundFeedView.swift */,
+				1017C3AB2ACF25810094CBA1 /* EditFeedView.swift */,
 			);
 			path = "Add feed";
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				10CAD3522A1A4051008F2FA7 /* DataController.swift in Sources */,
 				10861BA729B26B4F0082F8B3 /* ImageAssets.swift in Sources */,
 				5FA579FD28C941360009C5C8 /* NewsHubRssApp.swift in Sources */,
+				1017C3AC2ACF25810094CBA1 /* EditFeedView.swift in Sources */,
 				1013A3442AC49CFF00D7CE84 /* FavoritesView.swift in Sources */,
 				1013A3492AC4A07700D7CE84 /* OtherView.swift in Sources */,
 			);
