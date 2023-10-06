@@ -14,6 +14,7 @@ class DBFeedItem: NSManagedObject, Identifiable {
     @NSManaged var pubDate: Date
     @NSManaged var hasRead: Bool
     @NSManaged var hasDeleted: Bool
+    @NSManaged var isFavorite: Bool
 
     @NSManaged var dbFeed: DBFeed
 }

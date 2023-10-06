@@ -29,6 +29,14 @@ struct FeedItemsListView: View {
                         selectedFeedItem = item
                         item.hasRead = true
                     }
+                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                        Button(role: .cancel) {
+                            item.isFavorite = true
+                        } label: {
+                            Label("", systemImage: "heart")
+                        }
+                        .tint(.green)
+                    }
                 }
                 .onDelete(perform: deleteItems)
             }
