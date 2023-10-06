@@ -18,16 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="1AL-m1-MoZ">
-                                <rect key="frame" x="24" y="312.33333333333331" width="345" height="227.33333333333331"/>
+                                <rect key="frame" x="66.666666666666657" y="312.33333333333331" width="259.66666666666674" height="227.33333333333331"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="LaunchScreenBackground"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="1AL-m1-MoZ" secondAttribute="trailing" constant="24" id="Mne-Tn-5se"/>
+                            <constraint firstItem="1AL-m1-MoZ" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.66" id="Myc-w0-GCq"/>
                             <constraint firstItem="1AL-m1-MoZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Y48-JB-TaO"/>
                             <constraint firstItem="1AL-m1-MoZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fYr-4f-buE"/>
-                            <constraint firstItem="1AL-m1-MoZ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="24" id="tCu-Y3-Df4"/>
                         </constraints>
                     </view>
                 </viewController>
