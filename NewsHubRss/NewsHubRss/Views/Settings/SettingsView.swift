@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var selectedTheme: Theme = .system
+    @State private var useReaderInSafari = true
 
     var body: some View {
         NavigationView {
@@ -19,6 +20,7 @@ struct SettingsView: View {
                         Text(L10n.Settings.Displaying.Theme.Dark.title).tag(Theme.dark)
                         Text(L10n.Settings.Displaying.Theme.Light.title).tag(Theme.light)
                     }
+                    Toggle(L10n.Settings.SafariReader.title, isOn: $useReaderInSafari)
                 }
             }
             .navigationTitle(L10n.SettingsPage.title)
@@ -30,4 +32,8 @@ enum Theme {
     case system
     case dark
     case light
+}
+
+#Preview {
+    SettingsView()
 }
