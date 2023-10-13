@@ -9,12 +9,13 @@ import SwiftUI
 import SafariServices
 
 struct SafariView: UIViewControllerRepresentable {
+    @AppStorage(AppSettings.useReaderInSafari.rawValue) var useReaderInSafari: Bool = true
     typealias UIViewControllerType = SFSafariViewController
     var url: URL
 
     func makeUIViewController(context: Context) -> SFSafariViewController {
         let configuration = SFSafariViewController.Configuration()
-        configuration.entersReaderIfAvailable = true
+        configuration.entersReaderIfAvailable = useReaderInSafari
         return SFSafariViewController(url: url, configuration: configuration)
     }
 

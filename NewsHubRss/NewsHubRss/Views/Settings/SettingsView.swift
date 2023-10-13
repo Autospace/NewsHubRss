@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+enum AppSettings: String {
+    case useReaderInSafari
+}
+
 struct SettingsView: View {
     @State private var selectedTheme: Theme = .system
-    @State private var useReaderInSafari = true
+    @AppStorage(AppSettings.useReaderInSafari.rawValue) var useReaderInSafari = true
 
     var body: some View {
         NavigationView {
