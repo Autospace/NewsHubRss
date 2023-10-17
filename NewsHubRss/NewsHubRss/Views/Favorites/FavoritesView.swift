@@ -29,11 +29,11 @@ struct FavoritesView: View {
                 .onTapGesture {
                     selectedFeedItem = feedItem
                 }
-                .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
-                    if let url = URL(string: selectedFeedItem.link) {
-                        SafariView(url: url)
-                    }
-                }
+            }
+        }
+        .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+            if let url = URL(string: selectedFeedItem.link) {
+                SafariView(url: url)
             }
         }
     }
