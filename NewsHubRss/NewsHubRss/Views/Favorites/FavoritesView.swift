@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var selectedFeedItem: DBFeedItem?
 
     @FetchRequest(
         entity: DBFeedItem.entity(),
@@ -25,6 +26,14 @@ struct FavoritesView: View {
                     date: feedItem.pubDate,
                     hasRead: feedItem.hasRead
                 )
+                .onTapGesture {
+                    selectedFeedItem = feedItem
+                }
+                .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+                    if let url = URL(string: selectedFeedItem.link) {
+                        SafariView(url: url)
+                    }
+                }
             }
         }
     }
