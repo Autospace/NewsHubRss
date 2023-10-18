@@ -12,6 +12,9 @@ class DBFeedItem: NSManagedObject, Identifiable {
     @NSManaged var title: String
     @NSManaged var link: String
     @NSManaged var pubDate: Date
+    @NSManaged var enclosureLink: String?
+    @NSManaged var enclosureLength: NSNumber?
+    @NSManaged var enclosureType: String?
     @NSManaged var hasRead: Bool
     @NSManaged var hasDeleted: Bool
     @NSManaged var isFavorite: Bool

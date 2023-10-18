@@ -24,6 +24,7 @@ struct FavoritesView: View {
                 FeedItemView(
                     title: feedItem.title,
                     date: feedItem.pubDate,
+                    imageUrl: URL(string: feedItem.enclosureLink ?? ""),
                     hasRead: feedItem.hasRead
                 )
                 .onTapGesture {

@@ -10,16 +10,41 @@ import SwiftUI
 struct FeedItemView: View {
     let title: String
     let date: Date
+    let imageUrl: URL?
     var hasRead: Bool = false
     @Environment(\.colorScheme) private var colorScheme
+    let imageWidth: CGFloat = 65
+    let imageHeight: CGFloat = 65
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
-                .foregroundColor(hasRead ? .gray : (colorScheme == .dark ? .white : .black))
-            Text(getDateString())
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
+        HStack {
+            VStack {
+                AsyncImage(
+                    url: imageUrl,
+                    content: { image in
+                        image.resizable()
+                             .aspectRatio(contentMode: .fill)
+                             .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                )
+                .frame(width: imageWidth, height: imageHeight)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(4)
+
+                Spacer()
+            }
+            .padding(0)
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .foregroundColor(hasRead ? .gray : (colorScheme == .dark ? .white : .black))
+                Text(getDateString())
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+            }
         }
     }
 
@@ -34,6 +59,6 @@ struct FeedItemView: View {
 
 struct FeedItemView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedItemView(title: "Test title", date: Date())
+        FeedItemView(title: "Test title", date: Date(), imageUrl: URL(string: "https://picsum.photos/200/300"))
     }
 }

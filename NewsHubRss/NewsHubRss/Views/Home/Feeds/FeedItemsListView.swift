@@ -23,6 +23,7 @@ struct FeedItemsListView: View {
                     FeedItemView(
                         title: item.title,
                         date: item.pubDate,
+                        imageUrl: URL(string: item.enclosureLink ?? ""),
                         hasRead: item.hasRead
                     )
                     .onTapGesture {
@@ -96,6 +97,9 @@ struct FeedItemsListView: View {
                 dbFeedItem.guid = feedItem.feedData.guid?.value ?? link
                 dbFeedItem.pubDate = pubDate
                 dbFeedItem.dbFeed = feed
+                dbFeedItem.enclosureLink = feedItem.feedData.enclosure?.attributes?.url
+                dbFeedItem.enclosureLength = NSNumber(value: feedItem.feedData.enclosure?.attributes?.length ?? 0)
+                dbFeedItem.enclosureType = feedItem.feedData.enclosure?.attributes?.type
             }
 
             isLoading = false
