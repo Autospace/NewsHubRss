@@ -34,7 +34,7 @@ struct FeedItemView: View {
                     )
                     .frame(width: imageWidth, height: imageHeight)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .padding(4)
+                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 4))
 
                     Spacer()
                 }
