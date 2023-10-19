@@ -35,3 +35,4 @@
 "settings.displaying.theme.dark.title" = "Dark";
 "settings.displaying.theme.light.title" = "Light";
 "settings.safariReader.title" = "Use reader in Safari if available";
+"settings.imagesForFeedItemsInTheList.title" = "Show images in the list of feed items";

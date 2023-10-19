@@ -70,6 +70,10 @@ internal enum L10n {
         }
       }
     }
+    internal enum ImagesForFeedItemsInTheList {
+      /// Show images in the list of feed items
+      internal static let title = L10n.tr("Localizable", "settings.imagesForFeedItemsInTheList.title", fallback: "Show images in the list of feed items")
+    }
     internal enum SafariReader {
       /// Use reader in Safari if available
       internal static let title = L10n.tr("Localizable", "settings.safariReader.title", fallback: "Use reader in Safari if available")

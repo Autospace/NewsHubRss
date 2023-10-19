@@ -35,3 +35,4 @@
 "settings.displaying.theme.dark.title" = "Тёмная";
 "settings.displaying.theme.light.title" = "Светлая";
 "settings.safariReader.title" = "Использовать 'Для чтения' в Safari если доступно";
+"settings.imagesForFeedItemsInTheList.title" = "Показать изображения в списке элементов ленты";

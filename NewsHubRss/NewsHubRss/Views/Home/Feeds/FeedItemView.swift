@@ -15,28 +15,31 @@ struct FeedItemView: View {
     @Environment(\.colorScheme) private var colorScheme
     let imageWidth: CGFloat = 65
     let imageHeight: CGFloat = 65
+    @AppStorage(AppSettings.showImagesForFeedItemsInTheList.rawValue) var showImagesForFeedItemsInTheList = true
 
     var body: some View {
         HStack {
-            VStack {
-                AsyncImage(
-                    url: imageUrl,
-                    content: { image in
-                        image.resizable()
-                             .aspectRatio(contentMode: .fill)
-                             .frame(maxWidth: imageWidth, maxHeight: imageHeight)
-                    },
-                    placeholder: {
-                        ProgressView()
-                    }
-                )
-                .frame(width: imageWidth, height: imageHeight)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(4)
+            if showImagesForFeedItemsInTheList {
+                VStack {
+                    AsyncImage(
+                        url: imageUrl,
+                        content: { image in
+                            image.resizable()
+                                 .aspectRatio(contentMode: .fill)
+                                 .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+                        },
+                        placeholder: {
+                            ProgressView()
+                        }
+                    )
+                    .frame(width: imageWidth, height: imageHeight)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding(4)
 
-                Spacer()
+                    Spacer()
+                }
+                .padding(0)
             }
-            .padding(0)
 
             VStack(alignment: .leading, spacing: 12) {
                 Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
@@ -59,6 +62,6 @@ struct FeedItemView: View {
 
 struct FeedItemView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedItemView(title: "Test title", date: Date(), imageUrl: URL(string: "https://picsum.photos/200/300"))
+        FeedItemView(title: "Test title", date: Date(), imageUrl: URL(string: "https://picsum.photos/200/200"))
     }
 }
