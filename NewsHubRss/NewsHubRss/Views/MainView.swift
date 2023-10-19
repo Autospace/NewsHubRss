@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var selectedTab: Tab = .home
+    @AppStorage(AppSettings.theme.rawValue) var theme: String = Theme.system.rawValue
 
     enum Tab {
         case home, other, add, favorites, settings
@@ -62,6 +63,9 @@ struct MainView: View {
                 }
                 .tag(Tab.settings)
         }
+        .if(theme != Theme.system.rawValue, transform: { view in
+            view.preferredColorScheme(theme == Theme.dark.rawValue ? .dark : .light)
+        })
     }
 }
 

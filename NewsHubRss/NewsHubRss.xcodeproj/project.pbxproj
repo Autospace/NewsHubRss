@@ -24,6 +24,8 @@
 		1096BD982A02DE8400DBE83E /* FoundFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096BD972A02DE8400DBE83E /* FoundFeedView.swift */; };
 		109EEAA22AAB7A6E00F25B83 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109EEAA12AAB7A6E00F25B83 /* FeedItem.swift */; };
 		109EEAA42AAB7B2B00F25B83 /* FoundFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109EEAA32AAB7B2B00F25B83 /* FoundFeed.swift */; };
+		10B18FB62AE184D7008B5B85 /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B18FB52AE184D7008B5B85 /* View+if.swift */; };
+		10B18FB82AE18632008B5B85 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B18FB72AE18632008B5B85 /* Theme.swift */; };
 		10B48BB52AC09FA7009F1286 /* DBFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B48BB42AC09FA7009F1286 /* DBFeedItem.swift */; };
 		10BD6F3A2ACB41790051034F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10BD6F392ACB41790051034F /* Launch Screen.storyboard */; };
 		10CAD3522A1A4051008F2FA7 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CAD3512A1A4051008F2FA7 /* DataController.swift */; };
@@ -82,6 +84,8 @@
 		1096BD972A02DE8400DBE83E /* FoundFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundFeedView.swift; sourceTree = "<group>"; };
 		109EEAA12AAB7A6E00F25B83 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		109EEAA32AAB7B2B00F25B83 /* FoundFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundFeed.swift; sourceTree = "<group>"; };
+		10B18FB52AE184D7008B5B85 /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
+		10B18FB72AE18632008B5B85 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		10B48BB42AC09FA7009F1286 /* DBFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFeedItem.swift; sourceTree = "<group>"; };
 		10BD6F392ACB41790051034F /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		10CAD3512A1A4051008F2FA7 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				101FC4F929ABD0CA00879AA5 /* SettingsView.swift */,
+				10B18FB72AE18632008B5B85 /* Theme.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -252,6 +257,14 @@
 			path = "Add feed";
 			sourceTree = "<group>";
 		};
+		10B18FB42AE184AC008B5B85 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				10B18FB52AE184D7008B5B85 /* View+if.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		41534D14469D4BAD0C73FEDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +303,7 @@
 		5FA579FB28C941360009C5C8 /* NewsHubRss */ = {
 			isa = PBXGroup;
 			children = (
+				10B18FB42AE184AC008B5B85 /* Extensions */,
 				10861BA329B26A6F0082F8B3 /* Resources */,
 				1013A34A2AC9E15300D7CE84 /* Info.plist */,
 				5FA579FC28C941360009C5C8 /* NewsHubRssApp.swift */,
@@ -609,8 +623,10 @@
 				10B48BB52AC09FA7009F1286 /* DBFeedItem.swift in Sources */,
 				1071CBB02A8FE5B900AC0C62 /* DBFeed.swift in Sources */,
 				106399DF29EDC2D6007B5DD0 /* FeedItemsListView.swift in Sources */,
+				10B18FB82AE18632008B5B85 /* Theme.swift in Sources */,
 				105F77242A0EB73A00AA97B8 /* Database.xcdatamodeld in Sources */,
 				109EEAA22AAB7A6E00F25B83 /* FeedItem.swift in Sources */,
+				10B18FB62AE184D7008B5B85 /* View+if.swift in Sources */,
 				101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */,
 				10E655C629F728B40030606B /* Networking.swift in Sources */,
 				106399E929EE07BF007B5DD0 /* SafariView.swift in Sources */,
