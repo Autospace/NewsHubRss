@@ -22,7 +22,7 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .home
                           ? Asset.homeIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.homeIcon.image.withRenderingMode(.alwaysTemplate)
+                          : Asset.homeIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.home)
@@ -31,8 +31,9 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .other
                           ? Asset.otherIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.otherIcon.image.withRenderingMode(.alwaysTemplate)
-                                .withTintColor(colorScheme == .dark ? .white : .black))
+                          : Asset.otherIcon.image.withRenderingMode(.alwaysOriginal)
+                                .withTintColor(colorScheme == .dark ? .white : .black)
+                    )
                 }
                 .tag(Tab.other)
 
@@ -40,7 +41,7 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .add
                           ? Asset.addIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.addIcon.image.withRenderingMode(.alwaysTemplate)
+                          : Asset.addIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.add)
@@ -49,7 +50,7 @@ struct MainView: View {
                 .tabItem {
                     Image(uiImage: selectedTab == .favorites
                           ? Asset.bookmarkIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.bookmarkIcon.image.withRenderingMode(.alwaysTemplate)
+                          : Asset.bookmarkIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.favorites)
