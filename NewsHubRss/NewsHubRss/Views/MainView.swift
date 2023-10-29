@@ -27,15 +27,15 @@ struct MainView: View {
                 }
                 .tag(Tab.home)
 
-            OtherView()
-                .tabItem {
-                    Image(uiImage: selectedTab == .other
-                          ? Asset.otherIconSelected.image.withRenderingMode(.alwaysOriginal)
-                          : Asset.otherIcon.image.withRenderingMode(.alwaysOriginal)
-                                .withTintColor(colorScheme == .dark ? .white : .black)
-                    )
-                }
-                .tag(Tab.other)
+//            OtherView()
+//                .tabItem {
+//                    Image(uiImage: selectedTab == .other
+//                          ? Asset.otherIconSelected.image.withRenderingMode(.alwaysOriginal)
+//                          : Asset.otherIcon.image.withRenderingMode(.alwaysOriginal)
+//                                .withTintColor(colorScheme == .dark ? .white : .black)
+//                    )
+//                }
+//                .tag(Tab.other)
 
             AddFeedView()
                 .tabItem {
