@@ -19,7 +19,7 @@ struct FeedItemView: View {
 
     var body: some View {
         HStack {
-            if showImagesForFeedItemsInTheList {
+            if showImagesForFeedItemsInTheList && !(imageUrl?.absoluteString ?? "").isEmpty {
                 VStack {
                     AsyncImage(
                         url: imageUrl,
