@@ -19,6 +19,7 @@ struct AddFeedView: View {
 
     @State private var searchUrl: URL?
     @State private var showingFeedEditView: Bool = false
+    @State private var selectedItem: FoundFeed?
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -74,15 +75,18 @@ struct AddFeedView: View {
                 ForEach(foundFeeds) { item in
                     FoundFeedView(feedTitle: item.title, feedURLString: item.link, tapHandler: {
                         showingFeedEditView = true
-                    })
-                    .sheet(isPresented: $showingFeedEditView, content: {
-                        EditFeedView(feed: item) { newTitle in
-                            print(newTitle)
-                        }
+                        selectedItem = item
                     })
                 }
             }
             .listStyle(.inset)
+            .sheet(isPresented: $showingFeedEditView, content: {
+                if let selectedItem = selectedItem {
+                    EditFeedView(feed: selectedItem) { newTitle in
+                        print(newTitle)
+                    }
+                }
+            })
         }
         .navigationTitle(L10n.AddNewFeed.title)
         .navigationBarTitleDisplayMode(.inline)
