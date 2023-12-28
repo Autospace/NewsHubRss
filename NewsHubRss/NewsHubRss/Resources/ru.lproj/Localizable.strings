@@ -15,6 +15,9 @@
 
 // MARK: - Main page
 "mainPage.title" = "Главная";
+"mainPage.emptyState.title" = "Нет фидов";
+"mainPage.emptyState.description" = "Вы можете добавить новый фид во вкладке с иконкой \"+\"";
+"mainPage.emptyState.buttonTitle" = "Добавить первый RSS фид";
 
 // MARK: - Settings page
 "settingsPage.title" = "Настройки";

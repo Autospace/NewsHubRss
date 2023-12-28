@@ -48,6 +48,14 @@ internal enum L10n {
   internal enum MainPage {
     /// Main
     internal static let title = L10n.tr("Localizable", "mainPage.title", fallback: "Main")
+    internal enum EmptyState {
+      /// Add first RSS feed
+      internal static let buttonTitle = L10n.tr("Localizable", "mainPage.emptyState.buttonTitle", fallback: "Add first RSS feed")
+      /// You can add new feeds on the tab with "+" icon
+      internal static let description = L10n.tr("Localizable", "mainPage.emptyState.description", fallback: "You can add new feeds on the tab with \"+\" icon")
+      /// No feeds
+      internal static let title = L10n.tr("Localizable", "mainPage.emptyState.title", fallback: "No feeds")
+    }
   }
   internal enum Settings {
     internal enum Displaying {

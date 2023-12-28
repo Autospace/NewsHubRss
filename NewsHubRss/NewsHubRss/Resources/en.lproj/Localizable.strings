@@ -15,6 +15,9 @@
 
 // MARK: - Main page
 "mainPage.title" = "Main";
+"mainPage.emptyState.title" = "No feeds";
+"mainPage.emptyState.description" = "You can add new feeds on the tab with \"+\" icon";
+"mainPage.emptyState.buttonTitle" = "Add first RSS feed";
 
 // MARK: - Settings page
 "settingsPage.title" = "Settings";

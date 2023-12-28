@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    @ObservedObject var tabSelectionManager: TabSelectionManager
     @FetchRequest(
         entity: DBFeed.entity(),
         sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)]
@@ -20,18 +20,34 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(dbFeeds) { dbFeed in
-                        NavigationLink {
-                            FeedItemsListView(feed: dbFeed)
-                        } label: {
-                            Text(dbFeed.title)
+                if dbFeeds.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView(label: {
+                            Label(L10n.MainPage.EmptyState.title, systemImage: "globe")
+                        }, description: {
+                            Text(L10n.MainPage.EmptyState.description)
+                        }, actions: {
+                            Button(action: {
+                                tabSelectionManager.selectedTab = .add
+                            }, label: {
+                                Text(L10n.MainPage.EmptyState.buttonTitle)
+                            })
+                        })
+                    }
+                } else {
+                    List {
+                        ForEach(dbFeeds) { dbFeed in
+                            NavigationLink {
+                                FeedItemsListView(feed: dbFeed)
+                            } label: {
+                                Text(dbFeed.title)
+                            }
                         }
+                        .onMove { indexSet, intValue in
+                            print("Index set: \(indexSet), IntValue: \(intValue)")
+                        }
+                        .onDelete(perform: deleteItems)
                     }
-                    .onMove { indexSet, intValue in
-                        print("Index set: \(indexSet), IntValue: \(intValue)")
-                    }
-                    .onDelete(perform: deleteItems)
                 }
             }
             .navigationTitle(L10n.MainPage.title)
@@ -51,6 +67,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(tabSelectionManager: TabSelectionManager())
     }
 }

@@ -7,39 +7,33 @@
 
 import SwiftUI
 
+final class TabSelectionManager: ObservableObject {
+    @Published var selectedTab: MainView.Tab = .home
+}
+
 struct MainView: View {
     @Environment(\.colorScheme) private var colorScheme
-    @State private var selectedTab: Tab = .home
     @AppStorage(AppSettings.theme.rawValue) var theme: String = Theme.system.rawValue
+    @StateObject private var tabSelectionManager = TabSelectionManager()
 
     enum Tab {
         case home, other, add, favorites, settings
     }
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView()
+        TabView(selection: $tabSelectionManager.selectedTab) {
+            HomeView(tabSelectionManager: tabSelectionManager)
                 .tabItem {
-                    Image(uiImage: selectedTab == .home
+                    Image(uiImage: tabSelectionManager.selectedTab == .home
                           ? Asset.homeIconSelected.image.withRenderingMode(.alwaysOriginal)
                           : Asset.homeIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
                 }
                 .tag(Tab.home)
 
-//            OtherView()
-//                .tabItem {
-//                    Image(uiImage: selectedTab == .other
-//                          ? Asset.otherIconSelected.image.withRenderingMode(.alwaysOriginal)
-//                          : Asset.otherIcon.image.withRenderingMode(.alwaysOriginal)
-//                                .withTintColor(colorScheme == .dark ? .white : .black)
-//                    )
-//                }
-//                .tag(Tab.other)
-
             AddFeedView()
                 .tabItem {
-                    Image(uiImage: selectedTab == .add
+                    Image(uiImage: tabSelectionManager.selectedTab == .add
                           ? Asset.addIconSelected.image.withRenderingMode(.alwaysOriginal)
                           : Asset.addIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
@@ -48,7 +42,7 @@ struct MainView: View {
 
             FavoritesView()
                 .tabItem {
-                    Image(uiImage: selectedTab == .favorites
+                    Image(uiImage: tabSelectionManager.selectedTab == .favorites
                           ? Asset.bookmarkIconSelected.image.withRenderingMode(.alwaysOriginal)
                           : Asset.bookmarkIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
@@ -57,7 +51,7 @@ struct MainView: View {
 
             SettingsView()
                 .tabItem {
-                    Image(uiImage: selectedTab == .settings
+                    Image(uiImage: tabSelectionManager.selectedTab == .settings
                           ? Asset.settingsIconSelected.image.withRenderingMode(.alwaysOriginal)
                           : Asset.settingsIcon.image.withRenderingMode(.alwaysOriginal)
                                 .withTintColor(colorScheme == .dark ? .white : .black))
