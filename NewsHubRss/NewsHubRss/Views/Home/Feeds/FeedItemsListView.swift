@@ -25,8 +25,7 @@ struct FeedItemsListView: View {
                         date: item.pubDate,
                         imageUrl: URL(string: item.enclosureLink ?? ""),
                         hasRead: item.hasRead
-                    )
-                    .onTapGesture {
+                    ) {
                         selectedFeedItem = item
                         item.hasRead = true
                     }

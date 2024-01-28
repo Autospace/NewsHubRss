@@ -11,11 +11,13 @@ struct FeedItemView: View {
     let title: String
     let date: Date
     let imageUrl: URL?
-    var hasRead: Bool = false
+    @State var hasRead: Bool = false
     @Environment(\.colorScheme) private var colorScheme
-    let imageWidth: CGFloat = 65
-    let imageHeight: CGFloat = 65
     @AppStorage(AppSettings.showImagesForFeedItemsInTheList.rawValue) var showImagesForFeedItemsInTheList = true
+    var onTapActionHandler: (() -> Void)?
+
+    private let imageWidth: CGFloat = 65
+    private let imageHeight: CGFloat = 65
 
     var body: some View {
         HStack {
@@ -48,6 +50,10 @@ struct FeedItemView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
             }
+        }
+        .onTapGesture {
+            hasRead = true
+            onTapActionHandler?()
         }
     }
 
