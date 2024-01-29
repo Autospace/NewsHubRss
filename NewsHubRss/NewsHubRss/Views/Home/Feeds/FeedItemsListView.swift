@@ -65,7 +65,7 @@ struct FeedItemsListView: View {
             isLoading = true
         }
         Networking.loadFeedItems(feedUrl: feed.url) { feedItems in
-            let lastSavedItem = feed.feedItems.first
+            let lastSavedItem = feed.allFeedItems.first
             if let lastSavedItem = lastSavedItem, let lastFeedItemPubDate = feedItems.sorted(by: { item1, item2 in
                 guard let pubDate1 = item1.feedData.pubDate, let pubDate2 = item2.feedData.pubDate else {
                     return false
@@ -86,7 +86,7 @@ struct FeedItemsListView: View {
 
                 if let lastSavedItem = lastSavedItem,
                    let lastFeedItemPubDate = feedItem.feedData.pubDate,
-                   lastSavedItem.pubDate >= lastFeedItemPubDate {
+                   lastSavedItem.pubDate > lastFeedItemPubDate {
                     continue
                 }
 

@@ -23,4 +23,11 @@ class DBFeed: NSManagedObject, Identifiable {
             $0.hasDeleted == false
         }
     }
+
+    public var allFeedItems: [DBFeedItem] {
+        let set = dbFeedItems ?? []
+        return set.sorted {
+            $0.pubDate > $1.pubDate
+        }
+    }
 }
