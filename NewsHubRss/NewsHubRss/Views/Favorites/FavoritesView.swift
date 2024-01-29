@@ -20,15 +20,19 @@ struct FavoritesView: View {
 
     var body: some View {
         List {
-            ForEach(dbFeedsItems) { feedItem in
-                FeedItemView(
-                    title: feedItem.title,
-                    date: feedItem.pubDate,
-                    imageUrl: URL(string: feedItem.enclosureLink ?? ""),
-                    hasRead: feedItem.hasRead
-                )
-                .onTapGesture {
-                    selectedFeedItem = feedItem
+            if dbFeedsItems.count == 0 {
+                ContentUnavailableView.search
+            } else {
+                ForEach(dbFeedsItems) { feedItem in
+                    FeedItemView(
+                        title: feedItem.title,
+                        date: feedItem.pubDate,
+                        imageUrl: URL(string: feedItem.enclosureLink ?? ""),
+                        hasRead: feedItem.hasRead
+                    )
+                    .onTapGesture {
+                        selectedFeedItem = feedItem
+                    }
                 }
             }
         }
