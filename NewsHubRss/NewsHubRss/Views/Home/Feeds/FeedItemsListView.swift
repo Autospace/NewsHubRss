@@ -85,8 +85,8 @@ struct FeedItemsListView: View {
                 }
 
                 if let lastSavedItem = lastSavedItem,
-                   let lastFeedItemPubDate = feedItem.feedData.pubDate,
-                   lastSavedItem.pubDate > lastFeedItemPubDate {
+                   let feedItemPubDate = feedItem.feedData.pubDate,
+                   lastSavedItem.pubDate >= feedItemPubDate {
                     continue
                 }
 
