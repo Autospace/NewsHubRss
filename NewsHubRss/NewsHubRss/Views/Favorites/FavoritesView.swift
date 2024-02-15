@@ -1,10 +1,3 @@
-//
-//  FavoritesView.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 27.09.23.
-//
-
 import SwiftUI
 
 struct FavoritesView: View {
@@ -29,8 +22,7 @@ struct FavoritesView: View {
                         date: feedItem.pubDate,
                         imageUrl: URL(string: feedItem.enclosureLink ?? ""),
                         hasRead: feedItem.hasRead
-                    )
-                    .onTapGesture {
+                    ) {
                         selectedFeedItem = feedItem
                     }
                 }
