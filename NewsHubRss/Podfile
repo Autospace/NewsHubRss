@@ -6,7 +6,6 @@ target 'NewsHubRss' do
   use_frameworks!
 
   # Pods for NewsHubRss
-  pod 'SwiftSoup', :inhibit_warnings => true
   pod 'FeedKit'
   pod 'SwiftLint'
 
