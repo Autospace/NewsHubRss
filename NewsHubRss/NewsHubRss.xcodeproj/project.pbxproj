@@ -31,6 +31,7 @@
 		10CAD3522A1A4051008F2FA7 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CAD3512A1A4051008F2FA7 /* DataController.swift */; };
 		10E655C629F728B40030606B /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E655C529F728B40030606B /* Networking.swift */; };
 		10FF3E3D2B823EDF0015DE15 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 10FF3E3C2B823EDF0015DE15 /* SwiftSoup */; };
+		10FF3E402B8244C90015DE15 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 10FF3E3F2B8244C90015DE15 /* FeedKit */; };
 		5FA579FD28C941360009C5C8 /* NewsHubRssApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA579FC28C941360009C5C8 /* NewsHubRssApp.swift */; };
 		5FA579FF28C941360009C5C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA579FE28C941360009C5C8 /* HomeView.swift */; };
 		5FA57A0128C9413C0009C5C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FA57A0028C9413C0009C5C8 /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10FF3E402B8244C90015DE15 /* FeedKit in Frameworks */,
 				63B9BC502387EF62450D7FB4 /* Pods_NewsHubRss.framework in Frameworks */,
 				10FF3E3D2B823EDF0015DE15 /* SwiftSoup in Frameworks */,
 			);
@@ -356,7 +358,6 @@
 				10861B9729AD2E3E0082F8B3 /* ShellScript */,
 				5FA579F628C941360009C5C8 /* Frameworks */,
 				5FA579F728C941360009C5C8 /* Resources */,
-				A2BC39C5A02DC60E41E2D340 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,6 +366,7 @@
 			name = NewsHubRss;
 			packageProductDependencies = (
 				10FF3E3C2B823EDF0015DE15 /* SwiftSoup */,
+				10FF3E3F2B8244C90015DE15 /* FeedKit */,
 			);
 			productName = NewsHubRss;
 			productReference = 5FA579F928C941360009C5C8 /* NewsHubRss.app */;
@@ -397,7 +399,6 @@
 				5FA57A0F28C9413C0009C5C8 /* Sources */,
 				5FA57A1028C9413C0009C5C8 /* Frameworks */,
 				5FA57A1128C9413C0009C5C8 /* Resources */,
-				20213B8D773B264FAFFD070A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -444,6 +445,7 @@
 			mainGroup = 5FA579F028C941360009C5C8;
 			packageReferences = (
 				10FF3E3B2B823EDF0015DE15 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = 5FA579FA28C941360009C5C8 /* Products */;
 			projectDirPath = "";
@@ -521,23 +523,6 @@
 			shellPath = /bin/sh;
 			shellScript = "PODSROOT=\"$1\"\nOUTPUT_FILES=()\n\nCOUNTER=0\nwhile [ $COUNTER -lt ${SCRIPT_OUTPUT_FILE_COUNT} ];\ndo\n    tmp=\"SCRIPT_OUTPUT_FILE_$COUNTER\"\n    OUTPUT_FILES+=(${!tmp})\n    COUNTER=$[$COUNTER+1]\ndone\n\nfor file in \"${OUTPUT_FILES[@]}\"\ndo\n    if [ -f $file ]\n    then\n        chmod a=rw \"$file\"\n    fi\ndone\n\n\"${PROJECT_DIR}/swiftgen/bin/swiftgen\" config run --config swiftgen.yml\n\nfor file in \"${OUTPUT_FILES[@]}\"\ndo\n    chmod a=r \"$file\"\ndone\n";
 		};
-		20213B8D773B264FAFFD070A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss-NewsHubRssUITests/Pods-NewsHubRss-NewsHubRssUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss-NewsHubRssUITests/Pods-NewsHubRss-NewsHubRssUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss-NewsHubRssUITests/Pods-NewsHubRss-NewsHubRssUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		240869B5067011B9872F4A00 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -602,23 +587,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2BC39C5A02DC60E41E2D340 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss/Pods-NewsHubRss-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss/Pods-NewsHubRss-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsHubRss/Pods-NewsHubRss-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -842,11 +810,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"FeedKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.themalx.NewsHubRss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -880,11 +844,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"FeedKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.themalx.NewsHubRss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1025,6 +985,14 @@
 				minimumVersion = 2.7.1;
 			};
 		};
+		10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1032,6 +1000,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 10FF3E3B2B823EDF0015DE15 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		10FF3E3F2B8244C90015DE15 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

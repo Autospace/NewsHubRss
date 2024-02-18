@@ -6,7 +6,6 @@ target 'NewsHubRss' do
   use_frameworks!
 
   # Pods for NewsHubRss
-  pod 'FeedKit'
   pod 'SwiftLint'
 
   target 'NewsHubRssTests' do

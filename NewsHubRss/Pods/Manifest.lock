@@ -1,20 +1,16 @@
 PODS:
-  - FeedKit (9.1.2)
   - SwiftLint (0.50.3)
 
 DEPENDENCIES:
-  - FeedKit
   - SwiftLint
 
 SPEC REPOS:
   trunk:
-    - FeedKit
     - SwiftLint
 
 SPEC CHECKSUMS:
-  FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
   SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
 
-PODFILE CHECKSUM: 73e0297a651f9ae05ebd64c584b172ea3cae1374
+PODFILE CHECKSUM: 9f91bcec407f69e1c09749738c18ffdb3f42a209
 
 COCOAPODS: 1.15.2
