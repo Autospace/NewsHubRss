@@ -17,10 +17,10 @@ struct NewsHubRssApp: App {
             MainView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
-        .onChange(of: scenePhase) { newValue in
+        .onChange(of: scenePhase, { _, newValue in
             if newValue == .inactive || newValue == .background {
                 try? dataController.container.viewContext.save()
             }
-        }
+        })
     }
 }

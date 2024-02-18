@@ -37,7 +37,7 @@ struct AddFeedView: View {
                     )
                     .disableAutocorrection(true)
                     .focused($textFieldIsFocused)
-                    .onChange(of: feedUrlString) { _ in
+                    .onChange(of: feedUrlString) { _, _ in
                         hasError = false
                     }
 
