@@ -1,6 +1,0 @@
-framework module Pods_NewsHubRss_NewsHubRssUITests {
-  umbrella header "Pods-NewsHubRss-NewsHubRssUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
