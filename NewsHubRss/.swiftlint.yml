@@ -1,5 +1,2 @@
 included:
   - NewsHubRss
-
-excluded:
-  - Pods
