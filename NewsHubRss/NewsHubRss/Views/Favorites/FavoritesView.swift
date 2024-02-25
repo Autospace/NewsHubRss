@@ -12,10 +12,23 @@ struct FavoritesView: View {
     private var dbFeedsItems: FetchedResults<DBFeedItem>
 
     var body: some View {
-        List {
-            if dbFeedsItems.count == 0 {
-                ContentUnavailableView.search
-            } else {
+        if dbFeedsItems.count == 0 {
+            VStack {
+                ContentUnavailableView {
+                    Label(
+                        title: { Text(L10n.Favorites.EmptyView.title) },
+                        icon: { 
+                            Image(systemName: "rainbow")
+                                .symbolRenderingMode(.multicolor)
+                                .font(.system(size: 144))
+                        }
+)
+                } description: {
+                    Text(L10n.Favorites.EmptyView.description)
+                }
+            }
+        } else {
+            List {
                 ForEach(dbFeedsItems) { feedItem in
                     FeedItemView(
                         title: feedItem.title,
@@ -27,10 +40,10 @@ struct FavoritesView: View {
                     }
                 }
             }
-        }
-        .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
-            if let url = URL(string: selectedFeedItem.link) {
-                SafariView(url: url)
+            .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
+                if let url = URL(string: selectedFeedItem.link) {
+                    SafariView(url: url)
+                }
             }
         }
     }

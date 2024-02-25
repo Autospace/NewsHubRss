@@ -45,6 +45,14 @@ internal enum L10n {
       internal static let message = L10n.tr("Localizable", "deleteFoundFeed.alert.message", fallback: "You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?")
     }
   }
+  internal enum Favorites {
+    internal enum EmptyView {
+      /// All favorites that you added will be available here
+      internal static let description = L10n.tr("Localizable", "favorites.emptyView.description", fallback: "All favorites that you added will be available here")
+      /// No favorite items
+      internal static let title = L10n.tr("Localizable", "favorites.emptyView.title", fallback: "No favorite items")
+    }
+  }
   internal enum MainPage {
     /// Main
     internal static let title = L10n.tr("Localizable", "mainPage.title", fallback: "Main")
