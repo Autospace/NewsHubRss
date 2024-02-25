@@ -316,11 +316,11 @@
 				5FA579F528C941360009C5C8 /* Sources */,
 				5FA579F628C941360009C5C8 /* Frameworks */,
 				5FA579F728C941360009C5C8 /* Resources */,
+				1077F7252B8B89C4006ECE82 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				10FF3E472B824FA50015DE15 /* PBXTargetDependency */,
 			);
 			name = NewsHubRss;
 			packageProductDependencies = (
@@ -405,7 +405,6 @@
 			packageReferences = (
 				10FF3E3B2B823EDF0015DE15 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				10FF3E412B824A630015DE15 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 5FA579FA28C941360009C5C8 /* Products */;
 			projectDirPath = "";
@@ -447,6 +446,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1077F7252B8B89C4006ECE82 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
 		10861BA229B2693E0082F8B3 /* SwiftGen script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -562,10 +578,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		10FF3E472B824FA50015DE15 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 10FF3E462B824FA50015DE15 /* SwiftLintPlugin */;
-		};
 		5FA57A0B28C9413C0009C5C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5FA579F828C941360009C5C8 /* NewsHubRss */;
@@ -629,7 +641,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -693,7 +705,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -915,14 +927,6 @@
 				version = 9.1.2;
 			};
 		};
-		10FF3E412B824A630015DE15 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
-			requirement = {
-				kind = exactVersion;
-				version = 0.54.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -935,11 +939,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
-		};
-		10FF3E462B824FA50015DE15 /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 10FF3E412B824A630015DE15 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 
