@@ -1,10 +1,3 @@
-//
-//  EditFeedView.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 5.10.23.
-//
-
 import SwiftUI
 
 struct EditFeedView: View {

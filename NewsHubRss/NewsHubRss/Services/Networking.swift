@@ -1,10 +1,3 @@
-//
-//  Networking.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 24.04.23.
-//
-
 import Foundation
 import FeedKit
 

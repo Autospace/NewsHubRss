@@ -1,10 +1,3 @@
-//
-//  View+if.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 19.10.23.
-//
-
 import SwiftUI
 
 extension View {

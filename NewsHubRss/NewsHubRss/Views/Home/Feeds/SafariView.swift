@@ -1,10 +1,3 @@
-//
-//  SafariView.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 18.04.23.
-//
-
 import SwiftUI
 import SafariServices
 

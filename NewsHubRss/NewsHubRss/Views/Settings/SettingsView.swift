@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 26.02.23.
-//
-
 import SwiftUI
 
 enum AppSettings: String {

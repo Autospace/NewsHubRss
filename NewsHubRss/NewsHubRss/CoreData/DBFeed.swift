@@ -1,10 +1,3 @@
-//
-//  DBFeed.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 18.08.23.
-//
-
 import CoreData
 
 class DBFeed: NSManagedObject, Identifiable {
