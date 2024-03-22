@@ -14,6 +14,11 @@ struct FavoritesView: View {
                                 Image(systemName: "rainbow")
                                     .symbolRenderingMode(.multicolor)
                                     .font(.system(size: 144))
+                                    .symbolEffect(
+                                        .variableColor
+                                        .iterative
+                                        .reversing
+                                    )
                             }
                         )
                     } description: {
