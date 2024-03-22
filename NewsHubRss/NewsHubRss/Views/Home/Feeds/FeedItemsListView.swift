@@ -52,7 +52,12 @@ struct FeedItemsListView: View {
                 }
             }
             .toolbar {
-                EditButton()
+                Button {
+                    // TODO: need to implement
+                    print("Open filter")
+                } label: {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                }
             }
         }
         .navigationTitle(viewModel.feed.title)
