@@ -1,50 +1,47 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @State private var selectedFeedItem: DBFeedItem?
-
-    @FetchRequest(
-        entity: DBFeedItem.entity(),
-        sortDescriptors: [],
-        predicate: NSPredicate(format: "isFavorite == true")
-    )
-    private var dbFeedsItems: FetchedResults<DBFeedItem>
+    @StateObject var viewModel = FavoritesViewModel()
 
     var body: some View {
-        if dbFeedsItems.count == 0 {
-            VStack {
-                ContentUnavailableView {
-                    Label(
-                        title: { Text(L10n.Favorites.EmptyView.title) },
-                        icon: { 
-                            Image(systemName: "rainbow")
-                                .symbolRenderingMode(.multicolor)
-                                .font(.system(size: 144))
-                        }
-)
-                } description: {
-                    Text(L10n.Favorites.EmptyView.description)
+        Group {
+            if viewModel.dbFeedItems.count == 0 {
+                VStack {
+                    ContentUnavailableView {
+                        Label(
+                            title: { Text(L10n.Favorites.EmptyView.title) },
+                            icon: {
+                                Image(systemName: "rainbow")
+                                    .symbolRenderingMode(.multicolor)
+                                    .font(.system(size: 144))
+                            }
+                        )
+                    } description: {
+                        Text(L10n.Favorites.EmptyView.description)
+                    }
                 }
-            }
-        } else {
-            List {
-                ForEach(dbFeedsItems) { feedItem in
-                    FeedItemView(
-                        title: feedItem.title,
-                        date: feedItem.pubDate,
-                        imageUrl: URL(string: feedItem.enclosureLink ?? ""),
-                        hasRead: feedItem.hasRead
-                    ) {
-                        selectedFeedItem = feedItem
+            } else {
+                List {
+                    ForEach(viewModel.dbFeedItems) { feedItem in
+                        FeedItemView(
+                            title: feedItem.title,
+                            date: feedItem.pubDate,
+                            imageUrl: URL(string: feedItem.enclosureLink ?? ""),
+                            hasRead: feedItem.hasRead
+                        ) {
+                            viewModel.selectedFeedItem = feedItem
+                        }
+                    }
+                }
+                .fullScreenCover(item: $viewModel.selectedFeedItem) { selectedFeedItem in
+                    if let url = URL(string: selectedFeedItem.link) {
+                        SafariView(url: url)
                     }
                 }
             }
-            .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
-                if let url = URL(string: selectedFeedItem.link) {
-                    SafariView(url: url)
-                }
-            }
+        }
+        .onAppear {
+            viewModel.fetchFavorites()
         }
     }
 }

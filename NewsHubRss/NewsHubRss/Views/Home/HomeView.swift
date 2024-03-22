@@ -1,42 +1,27 @@
-//
-//  ContentView.swift
-//  NewsHubRss
-//
-//  Created by Alex Mostovnikov on 7/9/22.
-//
-
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var tabSelectionManager: TabSelectionManager
-    @FetchRequest(
-        entity: DBFeed.entity(),
-        sortDescriptors: [NSSortDescriptor(key: "sortOrderPosition", ascending: true)]
-    )
-
-    private var dbFeeds: FetchedResults<DBFeed>
+    @StateObject var viewModel = HomeViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
-                if dbFeeds.isEmpty {
-                    if #available(iOS 17.0, *) {
-                        ContentUnavailableView(label: {
-                            Label(L10n.MainPage.EmptyState.title, systemImage: "globe")
-                        }, description: {
-                            Text(L10n.MainPage.EmptyState.description)
-                        }, actions: {
-                            Button(action: {
-                                tabSelectionManager.selectedTab = .add
-                            }, label: {
-                                Text(L10n.MainPage.EmptyState.buttonTitle)
-                            })
+                if viewModel.dbFeeds.isEmpty {
+                    ContentUnavailableView(label: {
+                        Label(L10n.MainPage.EmptyState.title, systemImage: "globe")
+                    }, description: {
+                        Text(L10n.MainPage.EmptyState.description)
+                    }, actions: {
+                        Button(action: {
+                            tabSelectionManager.selectedTab = .add
+                        }, label: {
+                            Text(L10n.MainPage.EmptyState.buttonTitle)
                         })
-                    }
+                    })
                 } else {
                     List {
-                        ForEach(dbFeeds) { dbFeed in
+                        ForEach(viewModel.dbFeeds) { dbFeed in
                             NavigationLink {
                                 FeedItemsListView(feed: dbFeed)
                             } label: {
@@ -46,22 +31,15 @@ struct HomeView: View {
                         .onMove { indexSet, intValue in
                             print("Index set: \(indexSet), IntValue: \(intValue)")
                         }
-                        .onDelete(perform: deleteItems)
+                        .onDelete(perform: viewModel.deleteItems)
                     }
                 }
             }
             .navigationTitle(L10n.MainPage.title)
         }
-    }
-
-    private func deleteItems(at offsets: IndexSet) {
-        guard let firstIndex = offsets.first else {
-            return
+        .onAppear {
+            viewModel.fetchFeeds()
         }
-
-        let itemToDelete = dbFeeds[firstIndex]
-        viewContext.delete(itemToDelete)
-        try? viewContext.save()
     }
 }
 

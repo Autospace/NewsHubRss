@@ -1,4 +1,5 @@
 {
+  "originHash" : "7be5c154999e23d12de76f01637e8e62f3896b74e2592cb3cd469094ca05e442",
   "pins" : [
     {
       "identity" : "feedkit",
@@ -19,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

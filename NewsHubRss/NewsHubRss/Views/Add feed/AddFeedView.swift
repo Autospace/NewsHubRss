@@ -1,55 +1,39 @@
-//
-//  AddFeedView.swift
-//  NewsHubRss
-//
-//  Created by Aliaksei Mastounikau on 26.02.23.
-//
-
 import SwiftUI
-import SwiftSoup
-import FeedKit
 
 struct AddFeedView: View {
-    @State private var feedUrlString = "https://"
     @FocusState private var textFieldIsFocused: Bool
-    @State private var isLoading = false
-    @State private var hasError = false
-    @State private var errorText = ""
-    @State private var foundFeeds: [FoundFeed] = []
-
-    @State private var searchUrl: URL?
-    @State private var showingFeedEditView: Bool = false
-    @State private var selectedItem: FoundFeed?
-
-    @Environment(\.managedObjectContext) private var viewContext
+    @StateObject var viewModel = AddFeedViewModel()
 
     var body: some View {
         VStack {
             VStack {
                 Text(L10n.AddNewFeed.instruction)
-                TextField(L10n.AddNewFeed.TextField.placeholder, text: $feedUrlString)
+                TextField(L10n.AddNewFeed.TextField.placeholder, text: $viewModel.feedUrlString)
                     .frame(height: 44)
                     .autocapitalization(.none)
                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(hasError ? Color.red : Color.gray)
+                            .stroke(viewModel.hasError ? Color.red : Color.gray)
                     )
                     .disableAutocorrection(true)
                     .focused($textFieldIsFocused)
-                    .onChange(of: feedUrlString) { _, _ in
-                        hasError = false
+                    .onChange(of: viewModel.feedUrlString) { _, _ in
+                        viewModel.hasError = false
                     }
 
-                if hasError {
-                    Text(errorText)
+                if viewModel.hasError {
+                    Text(viewModel.errorText)
                         .listRowSeparator(.hidden)
                         .foregroundColor(.red)
                         .font(.footnote)
                         .padding(0)
                 }
 
-                Button(action: startScanningFeed) {
+                Button {
+                    viewModel.startScanningFeed()
+                    textFieldIsFocused = false
+                } label: {
                     HStack {
                         Spacer()
                         Text(L10n.AddNewFeed.scanButtonTitle)
@@ -58,12 +42,12 @@ struct AddFeedView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(feedUrlString.count < 3 || isLoading)
+                .disabled(viewModel.feedUrlString.count < 3 || viewModel.isLoading)
                 .listRowSeparator(.hidden)
             }
             .padding()
 
-            if isLoading {
+            if viewModel.isLoading {
                 HStack {
                     Spacer()
                     ProgressView()
@@ -72,16 +56,16 @@ struct AddFeedView: View {
             }
 
             List {
-                ForEach(foundFeeds) { item in
+                ForEach(viewModel.foundFeeds) { item in
                     FoundFeedView(feedTitle: item.title, feedURLString: item.link, tapHandler: {
-                        showingFeedEditView = true
-                        selectedItem = item
+                        viewModel.showingFeedEditView = true
+                        viewModel.selectedItem = item
                     })
                 }
             }
             .listStyle(.inset)
-            .sheet(isPresented: $showingFeedEditView, content: {
-                if let selectedItem = selectedItem {
+            .sheet(isPresented: $viewModel.showingFeedEditView, content: {
+                if let selectedItem = viewModel.selectedItem {
                     EditFeedView(feed: selectedItem) { newTitle in
                         print(newTitle)
                     }
@@ -90,110 +74,6 @@ struct AddFeedView: View {
         }
         .navigationTitle(L10n.AddNewFeed.title)
         .navigationBarTitleDisplayMode(.inline)
-    }
-
-    private func startScanningFeed() {
-        guard let url = URL(string: feedUrlString) else {
-            return
-        }
-
-        searchUrl = url
-        textFieldIsFocused = false
-        foundFeeds = []
-        isLoading = true
-        hasError = false
-        Networking.detectRssFeed(by: url) { isRSS in
-            if isRSS {
-                Networking.loadFeedData(by: url.absoluteString) { feed in
-                    addFeedToFoundFeeds(url: url, feed: feed)
-                    isLoading = false
-                }
-            } else {
-                Networking.getRSSPageOfSite(by: url) { result in
-                    switch result {
-                    case .failure(let error):
-                        isLoading = false
-                        hasError = true
-                        errorText = error.localizedDescription
-                    case .success(let htmlDocument):
-                        parseHtmlDocumentToFindRssFeeds(htmlDocument)
-                    }
-                }
-            }
-        }
-    }
-
-    private func parseHtmlDocumentToFindRssFeeds(_ html: String) {
-        guard let doc = try? SwiftSoup.parse(html), let elements = try? doc.getAllElements() else {
-            hasError = true
-            errorText = "Cannot parse received document"
-            return
-        }
-
-        let group = DispatchGroup()
-        for element in elements {
-            guard element.hasAttr("href"), var link = try? element.attr("href") else {
-                continue
-            }
-
-            if let url = URL(string: link), url.host == nil {
-                if let searchUrl = searchUrl, let scheme = searchUrl.scheme, let host = searchUrl.host {
-                    link = "\(scheme)://\(host)\(link)"
-                } else {
-                    assertionFailure()
-                    link = feedUrlString + link
-                }
-            }
-
-            guard let url = URL(string: link), url.scheme != "http" else {
-                continue
-            }
-
-            group.enter()
-            Networking.detectRssFeed(by: url) { isRSS in
-                if isRSS {
-                    Networking.loadFeedData(by: url.absoluteString) { feed in
-                        addFeedToFoundFeeds(url: url, feed: feed)
-                        group.leave()
-                    }
-                } else {
-                    group.leave()
-                }
-            }
-        }
-
-        group.notify(queue: .main) {
-            isLoading = false
-        }
-    }
-
-    private func addFeedToFoundFeeds(url: URL, feed: Feed?) {
-        guard let feed = feed else {
-            return
-        }
-
-        DispatchQueue.main.async {
-            switch feed {
-            case .atom(let atomFeed):
-                foundFeeds.append(FoundFeed(
-                    id: foundFeeds.count,
-                    title: atomFeed.title ?? "",
-                    link: url.absoluteString
-                ))
-            case .rss(let rssFeed):
-                foundFeeds.append(FoundFeed(
-                    id: foundFeeds.count,
-                    title: rssFeed.title ?? "",
-                    link: url.absoluteString
-                ))
-            case .json(let jsonFeed):
-                foundFeeds.append(FoundFeed(
-                    id: foundFeeds.count,
-                    title: jsonFeed.title ?? "",
-                    link: url.absoluteString
-                ))
-            }
-        }
     }
 }
 

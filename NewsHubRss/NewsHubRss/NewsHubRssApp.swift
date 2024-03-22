@@ -1,10 +1,3 @@
-//
-//  NewsHubRssApp.swift
-//  NewsHubRss
-//
-//  Created by Alex Mostovnikov on 7/9/22.
-//
-
 import SwiftUI
 
 @main
@@ -15,11 +8,14 @@ struct NewsHubRssApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
         .onChange(of: scenePhase, { _, newValue in
             if newValue == .inactive || newValue == .background {
-                try? dataController.container.viewContext.save()
+                do {
+                    try dataController.container.viewContext.save()
+                } catch let error {
+                    print(error)
+                }
             }
         })
     }

@@ -1,10 +1,3 @@
-//
-//  NewsHubRssUITestsLaunchTests.swift
-//  NewsHubRssUITests
-//
-//  Created by Alex Mostovnikov on 7/9/22.
-//
-
 import XCTest
 
 class NewsHubRssUITestsLaunchTests: XCTestCase {

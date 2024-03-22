@@ -1,10 +1,3 @@
-//
-//  NewsHubRssTests.swift
-//  NewsHubRssTests
-//
-//  Created by Alex Mostovnikov on 7/9/22.
-//
-
 import XCTest
 @testable import NewsHubRss
 

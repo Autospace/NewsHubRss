@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct FeedItemsListView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    let feed: DBFeed
-    @State private var selectedFeedItem: DBFeedItem?
-    @State private var isLoading: Bool = false
+    @State var selectedFeedItem: DBFeedItem?
+    @StateObject var viewModel: FeedItemsListViewModel
+
+    init(feed: DBFeed) {
+        _viewModel = StateObject(wrappedValue: FeedItemsListViewModel(feed: feed))
+    }
 
     var body: some View {
         VStack {
-            if isLoading {
+            if viewModel.isLoading {
                 ProgressView()
             }
             List {
-                ForEach(feed.feedItems) { item in
+                ForEach(viewModel.feed.feedItems) { item in
                     FeedItemView(
                         title: item.title,
                         date: item.pubDate,
@@ -38,10 +40,10 @@ struct FeedItemsListView: View {
                         .tint(.green)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: viewModel.deleteItems)
             }
             .refreshable {
-                loadData(showLoadingIndicator: false)
+                viewModel.loadData(showLoadingIndicator: false)
             }
             .listStyle(.inset)
             .fullScreenCover(item: $selectedFeedItem) { selectedFeedItem in
@@ -53,61 +55,10 @@ struct FeedItemsListView: View {
                 EditButton()
             }
         }
-        .navigationTitle(feed.title)
+        .navigationTitle(viewModel.feed.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            loadData()
-        }
-    }
-
-    private func loadData(showLoadingIndicator: Bool = true) {
-        if showLoadingIndicator {
-            isLoading = true
-        }
-        Networking.loadFeedItems(feedUrl: feed.url) { feedItems in
-            let lastSavedItem = feed.allFeedItems.first
-            if let lastSavedItem = lastSavedItem, let lastFeedItemPubDate = feedItems.sorted(by: { item1, item2 in
-                guard let pubDate1 = item1.feedData.pubDate, let pubDate2 = item2.feedData.pubDate else {
-                    return false
-                }
-                return pubDate1 > pubDate2
-            }).first?.feedData.pubDate, lastSavedItem.pubDate >= lastFeedItemPubDate {
-                isLoading = false
-                return
-            }
-
-            for feedItem in feedItems {
-                guard let link = feedItem.feedData.link,
-                      let title = feedItem.feedData.title,
-                      let pubDate = feedItem.feedData.pubDate else {
-                    assertionFailure()
-                    continue
-                }
-
-                if let lastSavedItem = lastSavedItem,
-                   let feedItemPubDate = feedItem.feedData.pubDate,
-                   lastSavedItem.pubDate >= feedItemPubDate {
-                    continue
-                }
-
-                let dbFeedItem = DBFeedItem(context: viewContext)
-                dbFeedItem.title = title
-                dbFeedItem.link = link
-                dbFeedItem.guid = feedItem.feedData.guid?.value ?? link
-                dbFeedItem.pubDate = pubDate
-                dbFeedItem.dbFeed = feed
-                dbFeedItem.enclosureLink = feedItem.feedData.enclosure?.attributes?.url
-                dbFeedItem.enclosureLength = NSNumber(value: feedItem.feedData.enclosure?.attributes?.length ?? 0)
-                dbFeedItem.enclosureType = feedItem.feedData.enclosure?.attributes?.type
-            }
-
-            isLoading = false
-        }
-    }
-
-    private func deleteItems(at offsets: IndexSet) {
-        for index in offsets {
-            feed.feedItems[index].hasDeleted = true
+            viewModel.loadData()
         }
     }
 }
