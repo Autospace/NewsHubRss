@@ -12,6 +12,8 @@
 		101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */; };
 		101FC4F829ABD0AD00879AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F729ABD0AD00879AA5 /* MainView.swift */; };
 		101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101FC4F929ABD0CA00879AA5 /* SettingsView.swift */; };
+		1027977A2BB0941B00EB8AAB /* FeedItemsListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102797792BB0941B00EB8AAB /* FeedItemsListFilterView.swift */; };
+		1027977C2BB0967900EB8AAB /* FeedItemsListFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1027977B2BB0967900EB8AAB /* FeedItemsListFilterViewModel.swift */; };
 		105F77242A0EB73A00AA97B8 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 105F77222A0EB73A00AA97B8 /* Database.xcdatamodeld */; };
 		106399DF29EDC2D6007B5DD0 /* FeedItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106399DE29EDC2D6007B5DD0 /* FeedItemsListView.swift */; };
 		106399E229EDEB01007B5DD0 /* FeedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106399E129EDEB01007B5DD0 /* FeedItemView.swift */; };
@@ -69,6 +71,8 @@
 		101FC4F529ABBFBF00879AA5 /* AddFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedView.swift; sourceTree = "<group>"; };
 		101FC4F729ABD0AD00879AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		101FC4F929ABD0CA00879AA5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		102797792BB0941B00EB8AAB /* FeedItemsListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsListFilterView.swift; sourceTree = "<group>"; };
+		1027977B2BB0967900EB8AAB /* FeedItemsListFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsListFilterViewModel.swift; sourceTree = "<group>"; };
 		105F77232A0EB73A00AA97B8 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		106399DE29EDC2D6007B5DD0 /* FeedItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsListView.swift; sourceTree = "<group>"; };
 		106399E129EDEB01007B5DD0 /* FeedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemView.swift; sourceTree = "<group>"; };
@@ -186,6 +190,15 @@
 			path = "Add feed";
 			sourceTree = "<group>";
 		};
+		102797782BB093FE00EB8AAB /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				102797792BB0941B00EB8AAB /* FeedItemsListFilterView.swift */,
+				1027977B2BB0967900EB8AAB /* FeedItemsListFilterViewModel.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		105F77252A0EB9B300AA97B8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +234,7 @@
 		106399E029EDE92E007B5DD0 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				102797782BB093FE00EB8AAB /* Filter */,
 				106399DE29EDC2D6007B5DD0 /* FeedItemsListView.swift */,
 				106399E129EDEB01007B5DD0 /* FeedItemView.swift */,
 				106399E829EE07BF007B5DD0 /* SafariView.swift */,
@@ -371,7 +385,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FA57A2028C9413C0009C5C8 /* Build configuration list for PBXNativeTarget "NewsHubRssTests" */;
 			buildPhases = (
-				88A199A10F9F2280A381EA4A /* [CP] Check Pods Manifest.lock */,
 				5FA57A0528C9413C0009C5C8 /* Sources */,
 				5FA57A0628C9413C0009C5C8 /* Frameworks */,
 				5FA57A0728C9413C0009C5C8 /* Resources */,
@@ -390,7 +403,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FA57A2328C9413C0009C5C8 /* Build configuration list for PBXNativeTarget "NewsHubRssUITests" */;
 			buildPhases = (
-				6936390B3457EFFF7BB91C53 /* [CP] Check Pods Manifest.lock */,
 				5FA57A0F28C9413C0009C5C8 /* Sources */,
 				5FA57A1028C9413C0009C5C8 /* Frameworks */,
 				5FA57A1128C9413C0009C5C8 /* Resources */,
@@ -517,50 +529,6 @@
 			shellPath = /bin/sh;
 			shellScript = "PODSROOT=\"$1\"\nOUTPUT_FILES=()\n\nCOUNTER=0\nwhile [ $COUNTER -lt ${SCRIPT_OUTPUT_FILE_COUNT} ];\ndo\n    tmp=\"SCRIPT_OUTPUT_FILE_$COUNTER\"\n    OUTPUT_FILES+=(${!tmp})\n    COUNTER=$[$COUNTER+1]\ndone\n\nfor file in \"${OUTPUT_FILES[@]}\"\ndo\n    if [ -f $file ]\n    then\n        chmod a=rw \"$file\"\n    fi\ndone\n\n\"${PROJECT_DIR}/swiftgen/bin/swiftgen\" config run --config swiftgen.yml\n\nfor file in \"${OUTPUT_FILES[@]}\"\ndo\n    chmod a=r \"$file\"\ndone\n";
 		};
-		6936390B3457EFFF7BB91C53 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewsHubRss-NewsHubRssUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88A199A10F9F2280A381EA4A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewsHubRssTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -576,6 +544,7 @@
 				109EEAA22AAB7A6E00F25B83 /* FeedItem.swift in Sources */,
 				10B18FB62AE184D7008B5B85 /* View+if.swift in Sources */,
 				101FC4FA29ABD0CA00879AA5 /* SettingsView.swift in Sources */,
+				1027977C2BB0967900EB8AAB /* FeedItemsListFilterViewModel.swift in Sources */,
 				10E655C629F728B40030606B /* Networking.swift in Sources */,
 				106399E929EE07BF007B5DD0 /* SafariView.swift in Sources */,
 				101FC4F629ABBFBF00879AA5 /* AddFeedView.swift in Sources */,
@@ -595,6 +564,7 @@
 				10D0CFBF2B9522E700F398DE /* FeedItemsListViewModel.swift in Sources */,
 				1017C3AC2ACF25810094CBA1 /* EditFeedView.swift in Sources */,
 				1013A3442AC49CFF00D7CE84 /* FavoritesView.swift in Sources */,
+				1027977A2BB0941B00EB8AAB /* FeedItemsListFilterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +667,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -755,7 +725,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -840,7 +810,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNRC3AC2CZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MALX.NewsHubRssTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -860,7 +830,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNRC3AC2CZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MALX.NewsHubRssTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -879,7 +849,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNRC3AC2CZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MALX.NewsHubRssUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -898,7 +868,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNRC3AC2CZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MALX.NewsHubRssUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

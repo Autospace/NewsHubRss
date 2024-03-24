@@ -19,6 +19,12 @@
 "mainPage.emptyState.description" = "You can add new feeds on the tab with \"+\" icon";
 "mainPage.emptyState.buttonTitle" = "Add first RSS feed";
 
+// MARK: - Feed items filter
+"feedItemsFilter.applyFilterButtonTitle" = "Apply filter";
+"feedItemsFilter.clearFilterButtonTitle" = "Clear filter";
+"feedItemsFilter.authorsSection.title" = "Authors";
+"feedItemsFilter.authorsSection.unknownAuthor" = "Unknown author";
+
 // MARK: - Settings page
 "settingsPage.title" = "Settings";
 

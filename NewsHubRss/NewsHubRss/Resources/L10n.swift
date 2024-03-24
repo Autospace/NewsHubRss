@@ -53,6 +53,18 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "favorites.emptyView.title", fallback: "No favorite items")
     }
   }
+  internal enum FeedItemsFilter {
+    /// Apply filter
+    internal static let applyFilterButtonTitle = L10n.tr("Localizable", "feedItemsFilter.applyFilterButtonTitle", fallback: "Apply filter")
+    /// Clear filter
+    internal static let clearFilterButtonTitle = L10n.tr("Localizable", "feedItemsFilter.clearFilterButtonTitle", fallback: "Clear filter")
+    internal enum AuthorsSection {
+      /// Authors
+      internal static let title = L10n.tr("Localizable", "feedItemsFilter.authorsSection.title", fallback: "Authors")
+      /// Unknown author
+      internal static let unknownAuthor = L10n.tr("Localizable", "feedItemsFilter.authorsSection.unknownAuthor", fallback: "Unknown author")
+    }
+  }
   internal enum MainPage {
     /// Main
     internal static let title = L10n.tr("Localizable", "mainPage.title", fallback: "Main")

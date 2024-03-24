@@ -19,6 +19,12 @@
 "mainPage.emptyState.description" = "Вы можете добавить новый фид во вкладке с иконкой \"+\"";
 "mainPage.emptyState.buttonTitle" = "Добавить первый RSS фид";
 
+// MARK: - Feed items filter
+"feedItemsFilter.applyFilterButtonTitle" = "Применить фильтр";
+"feedItemsFilter.clearFilterButtonTitle" = "Очистить фильтр";
+"feedItemsFilter.authorsSection.title" = "Авторы";
+"feedItemsFilter.authorsSection.unknownAuthor" = "Неизвестный автор";
+
 // MARK: - Settings page
 "settingsPage.title" = "Настройки";
 
