@@ -8,6 +8,7 @@
         <relationship name="dbFeedItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBFeedItem" inverseName="dbFeed" inverseEntity="DBFeedItem"/>
     </entity>
     <entity name="DBFeedItem" representedClassName=".DBFeedItem" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="enclosureLength" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="enclosureLink" optional="YES" attributeType="String"/>
         <attribute name="enclosureType" optional="YES" attributeType="String"/>

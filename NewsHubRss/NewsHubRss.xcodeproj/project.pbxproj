@@ -160,6 +160,32 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		102797752BB0725D00EB8AAB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				10D0CFBE2B9522E700F398DE /* FeedItemsListViewModel.swift */,
+				10B1971B2B8CFB6B00D7CCFF /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		102797762BB0728300EB8AAB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				10D0CFBA2B950D3500F398DE /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		102797772BB072A100EB8AAB /* Add feed */ = {
+			isa = PBXGroup;
+			children = (
+				10D0CFC02B95EFE600F398DE /* FoundFeedViewModel.swift */,
+				10D0CFBC2B95152900F398DE /* AddFeedViewModel.swift */,
+			);
+			path = "Add feed";
+			sourceTree = "<group>";
+		};
 		105F77252A0EB9B300AA97B8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,11 +269,9 @@
 		10B1971A2B8CFB3A00D7CCFF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				10B1971B2B8CFB6B00D7CCFF /* HomeViewModel.swift */,
-				10D0CFBA2B950D3500F398DE /* FavoritesViewModel.swift */,
-				10D0CFBC2B95152900F398DE /* AddFeedViewModel.swift */,
-				10D0CFBE2B9522E700F398DE /* FeedItemsListViewModel.swift */,
-				10D0CFC02B95EFE600F398DE /* FoundFeedViewModel.swift */,
+				102797752BB0725D00EB8AAB /* Home */,
+				102797772BB072A100EB8AAB /* Add feed */,
+				102797762BB0728300EB8AAB /* Favorites */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

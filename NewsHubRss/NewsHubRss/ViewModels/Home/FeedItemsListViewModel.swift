@@ -47,6 +47,7 @@ final class FeedItemsListViewModel: ObservableObject {
                 let dbFeedItem = DBFeedItem(context: self.viewContext)
                 dbFeedItem.title = title
                 dbFeedItem.link = link
+                dbFeedItem.author = feedItem.feedData.author ?? feedItem.feedData.dublinCore?.dcCreator
                 dbFeedItem.guid = feedItem.feedData.guid?.value ?? link
                 dbFeedItem.pubDate = pubDate
                 dbFeedItem.dbFeed = feed
