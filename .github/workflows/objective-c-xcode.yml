@@ -22,6 +22,7 @@ jobs:
           ls -la
       - name: Set Default Scheme
         run: |
+          cd NewsHubRss
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
@@ -30,7 +31,6 @@ jobs:
         env:
           scheme: ${{ 'default' }}
         run: |
-          cd NewsHubRss
           if [ $scheme = default ]; then scheme=$(cat default); fi
           filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`";
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
