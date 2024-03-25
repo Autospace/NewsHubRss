@@ -14,7 +14,7 @@ struct FeedItemsListView: View {
                 ProgressView()
             }
             List {
-                ForEach(viewModel.feed.feedItems) { item in
+                ForEach(viewModel.listItems) { item in
                     FeedItemView(
                         title: item.title,
                         date: item.pubDate,
@@ -46,11 +46,29 @@ struct FeedItemsListView: View {
             }
             .toolbar {
                 Button {
-                    // TODO: need to implement
-                    print("Open filter")
+                    viewModel.filterIsOpened = true
                 } label: {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
+                    if viewModel.filter.isEmpty() {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                    } else {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                            .overlay(
+                                Circle()
+                                    .foregroundColor(.red)
+                                    .frame(width: 10, height: 10)
+                                    .offset(x: 3, y: 13),
+                                alignment: .topTrailing
+                            )
+                    }
                 }
+                .sheet(isPresented: $viewModel.filterIsOpened,
+                       content: {
+                    FeedItemsListFilterView(
+                        feed: viewModel.feed,
+                        filter: viewModel.filter,
+                        applyHandler: viewModel.applyFilterCompletion
+                    )
+                })
             }
         }
         .navigationTitle(viewModel.feed.title)
@@ -63,6 +81,6 @@ struct FeedItemsListView: View {
 
 struct FeedItemsList_Previews: PreviewProvider {
     static var previews: some View {
-        FeedItemsListView(feed: DBFeed())
+        FeedItemsListView(feed: DBFeed.previewInstance())
     }
 }

@@ -2,11 +2,15 @@ import Foundation
 
 final class FeedItemsListViewModel: ObservableObject {
     @Published var isLoading: Bool = false
+    @Published var filterIsOpened: Bool = false
+    @Published var listItems: [DBFeedItem] = []
     let feed: DBFeed
+    var filter: FeedItemsListFilter = FeedItemsListFilter()
     private let viewContext = DataController.shared.container.viewContext
 
     init(feed: DBFeed) {
         self.feed = feed
+        self.listItems = feed.feedItems
     }
 
     func loadData(showLoadingIndicator: Bool = true) {
@@ -58,6 +62,7 @@ final class FeedItemsListViewModel: ObservableObject {
 
             DispatchQueue.main.async {
                 self.isLoading = false
+                self.applyFilterCompletion(self.filter)
             }
         }
     }
@@ -65,6 +70,19 @@ final class FeedItemsListViewModel: ObservableObject {
     func deleteItems(at offsets: IndexSet) {
         for index in offsets {
             feed.feedItems[index].hasDeleted = true
+        }
+    }
+
+    func applyFilterCompletion(_ filter: FeedItemsListFilter) {
+        filterIsOpened = false
+        self.filter = filter
+
+        if filter.isEmpty() {
+            listItems = feed.feedItems
+        } else {
+            listItems = feed.feedItems.filter({ feedItem in
+                filter.authors.contains(feedItem.author ?? "")
+            })
         }
     }
 }
