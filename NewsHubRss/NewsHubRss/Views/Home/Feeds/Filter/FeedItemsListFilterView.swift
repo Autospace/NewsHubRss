@@ -4,7 +4,13 @@ struct FeedItemsListFilterView: View {
     @StateObject private var viewModel: FeedItemsListFilterViewModel
 
     init(feed: DBFeed, filter: FeedItemsListFilter, applyHandler: @escaping (_ filter: FeedItemsListFilter) -> Void) {
-        _viewModel = StateObject(wrappedValue: FeedItemsListFilterViewModel(feed: feed, filter: filter, applyHandler: applyHandler))
+        _viewModel = StateObject(
+            wrappedValue: FeedItemsListFilterViewModel(
+                feed: feed,
+                filter: filter,
+                applyHandler: applyHandler
+            )
+        )
     }
 
     var body: some View {
@@ -30,14 +36,24 @@ struct FeedItemsListFilterView: View {
             Spacer()
 
             HStack {
+                Button {
+                    viewModel.clearFilter()
+                } label: {
+                    Text(L10n.FeedItemsFilter.clearFilterButtonTitle)
+                        .foregroundColor(.white)
+                }
+                .background(Color.red)
+                .cornerRadius(8)
+                .padding([.leading], 16)
+                .buttonStyle(.bordered)
+
                 Spacer()
                 Button(action: {
                     viewModel.applyFilter()
                 }, label: {
                     Text(L10n.FeedItemsFilter.applyFilterButtonTitle)
                 })
-                .padding(8)
-                Spacer()
+                .padding([.trailing], 16)
             }
             .buttonStyle(.borderedProminent)
         }

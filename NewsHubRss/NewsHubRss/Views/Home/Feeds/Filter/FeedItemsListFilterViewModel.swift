@@ -25,6 +25,7 @@ class FeedItemsListFilterViewModel: ObservableObject {
 
     func loadAuthors() {
         authors = Array(Set(feed.feedItems.map { $0.author ?? L10n.FeedItemsFilter.AuthorsSection.unknownAuthor }))
+        selectedAuthors = filter.authors
     }
 
     func toggleAuthorSelection(_ author: String) {
@@ -38,5 +39,10 @@ class FeedItemsListFilterViewModel: ObservableObject {
     func applyFilter() {
         filter.authors = selectedAuthors
         applyFilterHandler(filter)
+    }
+
+    func clearFilter() {
+        selectedAuthors = []
+        filter.authors = []
     }
 }

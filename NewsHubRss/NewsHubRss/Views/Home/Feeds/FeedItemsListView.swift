@@ -48,7 +48,18 @@ struct FeedItemsListView: View {
                 Button {
                     viewModel.filterIsOpened = true
                 } label: {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
+                    if viewModel.filter.isEmpty() {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                    } else {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                            .overlay(
+                                Circle()
+                                    .foregroundColor(.red)
+                                    .frame(width: 10, height: 10)
+                                    .offset(x: 3, y: 13),
+                                alignment: .topTrailing
+                            )
+                    }
                 }
                 .sheet(isPresented: $viewModel.filterIsOpened,
                        content: {
