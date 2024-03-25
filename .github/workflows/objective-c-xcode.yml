@@ -15,7 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: List Files
-        run: ls -la
+        run: |
+          ls -la
+          pwd
+          cd NewsHubRss
+          ls -la
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
