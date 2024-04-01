@@ -9,13 +9,8 @@ struct AddFeedView: View {
             VStack {
                 Text(L10n.AddNewFeed.instruction)
                 TextField(L10n.AddNewFeed.TextField.placeholder, text: $viewModel.feedUrlString)
-                    .frame(height: 44)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(viewModel.hasError ? Color.red : Color.gray)
-                    )
                     .disableAutocorrection(true)
                     .focused($textFieldIsFocused)
                     .onChange(of: viewModel.feedUrlString) { _, _ in
