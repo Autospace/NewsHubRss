@@ -10,7 +10,9 @@ final class FavoritesViewModel: ObservableObject {
         let request = NSFetchRequest<DBFeedItem>(entityName: String.init(describing: DBFeedItem.self))
         request.predicate = NSPredicate(format: "isFavorite == true")
         do {
-            dbFeedItems = try viewContext.fetch(request)
+            dbFeedItems = try viewContext.fetch(request).sorted(by: { item1, item2 in
+                item1.pubDate > item2.pubDate
+            })
         } catch let error {
             print("Fetch error: \(error)")
         }
