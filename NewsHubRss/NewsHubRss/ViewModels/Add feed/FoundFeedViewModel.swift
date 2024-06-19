@@ -4,19 +4,18 @@ import CoreData
 final class FoundFeedViewModel: ObservableObject {
     @Published var showingDeleteFeedAlert: Bool = false
     @Published var feedAlreadySaved = false
+    @Published var feedTitle: String
+    @Published var showingFeedEditView: Bool = false
 
-    let feedTitle: String
     let feedURLString: String
-    let tapHandler: (() -> Void)
 
     private let viewContext = DataController.shared.container.viewContext
 
     private var dbFeeds: [DBFeed] = []
 
-    init(feedTitle: String, feedURLString: String, tapHandler: @escaping () -> Void) {
+    init(feedTitle: String, feedURLString: String) {
         self.feedTitle = feedTitle
         self.feedURLString = feedURLString
-        self.tapHandler = tapHandler
 
         updateSavingStatusOfTheFeed()
     }

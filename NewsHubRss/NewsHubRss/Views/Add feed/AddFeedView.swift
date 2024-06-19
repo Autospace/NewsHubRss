@@ -52,20 +52,10 @@ struct AddFeedView: View {
 
             List {
                 ForEach(viewModel.foundFeeds) { item in
-                    FoundFeedView(feedTitle: item.title, feedURLString: item.link, tapHandler: {
-                        viewModel.showingFeedEditView = true
-                        viewModel.selectedItem = item
-                    })
+                    FoundFeedView(feedTitle: item.title, feedURLString: item.link)
                 }
             }
             .listStyle(.inset)
-            .sheet(isPresented: $viewModel.showingFeedEditView, content: {
-                if let selectedItem = viewModel.selectedItem {
-                    EditFeedView(feed: selectedItem) { newTitle in
-                        print(newTitle)
-                    }
-                }
-            })
         }
         .navigationTitle(L10n.AddNewFeed.title)
         .navigationBarTitleDisplayMode(.inline)

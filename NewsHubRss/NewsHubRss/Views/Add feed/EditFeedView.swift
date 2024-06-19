@@ -2,15 +2,21 @@ import SwiftUI
 
 struct EditFeedView: View {
     @State private var feedTitle: String = ""
-    let feed: FoundFeed
+    let feedLink: String
     let saveHandler: ((_ title: String) -> Void)
+
+    init(feedTitle: String, feedLink: String, saveHandler: @escaping (_: String) -> Void) {
+        self.feedTitle = feedTitle
+        self.feedLink = feedLink
+        self.saveHandler = saveHandler
+    }
 
     var body: some View {
         VStack {
-            TextField(feed.title, text: $feedTitle)
+            TextField(feedTitle, text: $feedTitle)
                 .padding()
                 .border(.gray)
-            Text(feed.link)
+            Text(feedLink)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.gray)
 
@@ -23,12 +29,13 @@ struct EditFeedView: View {
             }
         }
         .padding()
-        .onAppear {
-            feedTitle = feed.title
-        }
     }
 }
 
 #Preview {
-    EditFeedView(feed: FoundFeed(id: 0, title: "Test title", link: "https://test.link"), saveHandler: { _ in })
+    EditFeedView(
+        feedTitle: "Test title",
+        feedLink: "https://test.link",
+        saveHandler: { _ in}
+    )
 }

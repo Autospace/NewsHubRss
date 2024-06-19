@@ -4,12 +4,11 @@ struct FoundFeedView: View {
     @Environment(\.colorScheme) private var colorScheme
     @StateObject var viewModel: FoundFeedViewModel
 
-    init(feedTitle: String, feedURLString: String, tapHandler: @escaping () -> Void) {
+    init(feedTitle: String, feedURLString: String) {
         _viewModel = StateObject(
             wrappedValue: FoundFeedViewModel(
                 feedTitle: feedTitle,
-                feedURLString: feedURLString,
-                tapHandler: tapHandler
+                feedURLString: feedURLString
             )
         )
     }
@@ -23,8 +22,14 @@ struct FoundFeedView: View {
                     .foregroundColor(.gray)
             }
             .onTapGesture {
-                viewModel.tapHandler()
+                viewModel.showingFeedEditView = true
             }
+            .sheet(isPresented: $viewModel.showingFeedEditView, content: {
+                EditFeedView(feedTitle: viewModel.feedTitle, feedLink: viewModel.feedURLString) { newTitle in
+                    viewModel.feedTitle = newTitle
+                    viewModel.showingFeedEditView = false
+                }
+            })
 
             Spacer()
 
@@ -61,8 +66,6 @@ struct FoundFeedView: View {
     }
 }
 
-struct FoundFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoundFeedView(feedTitle: "Test title", feedURLString: "https://foundfeedurl.xyz", tapHandler: {})
-    }
+#Preview {
+    FoundFeedView(feedTitle: "Test title", feedURLString: "https://foundfeedurl.xyz")
 }
