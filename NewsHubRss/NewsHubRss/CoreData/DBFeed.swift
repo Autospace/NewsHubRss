@@ -1,7 +1,6 @@
 import CoreData
 
 class DBFeed: NSManagedObject, Identifiable {
-    @NSManaged var id: UUID
     @NSManaged var title: String
     @NSManaged var url: String
     @NSManaged var sortOrderPosition: Int16

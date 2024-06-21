@@ -25,18 +25,22 @@ final class AddFeedViewModel: ObservableObject {
         Networking.detectRssFeed(by: url) { isRSS in
             if isRSS {
                 Networking.loadFeedData(by: url.absoluteString) {[weak self] feed in
-                    self?.addFeedToFoundFeeds(url: url, feed: feed)
-                    self?.isLoading = false
+                    DispatchQueue.main.async {
+                        self?.addFeedToFoundFeeds(url: url, feed: feed)
+                        self?.isLoading = false
+                    }
                 }
             } else {
                 Networking.getRSSPageOfSite(by: url) {[weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        self?.isLoading = false
-                        self?.hasError = true
-                        self?.errorText = error.localizedDescription
-                    case .success(let htmlDocument):
-                        self?.parseHtmlDocumentToFindRssFeeds(htmlDocument)
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .failure(let error):
+                            self?.isLoading = false
+                            self?.hasError = true
+                            self?.errorText = error.localizedDescription
+                        case .success(let htmlDocument):
+                            self?.parseHtmlDocumentToFindRssFeeds(htmlDocument)
+                        }
                     }
                 }
             }

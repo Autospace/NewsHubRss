@@ -10,7 +10,7 @@ struct NewsHubRssApp: App {
             MainView()
         }
         .onChange(of: scenePhase, { _, newValue in
-            if newValue == .inactive || newValue == .background {
+            if (newValue == .inactive || newValue == .background) && dataController.container.viewContext.hasChanges {
                 do {
                     try dataController.container.viewContext.save()
                 } catch let error {

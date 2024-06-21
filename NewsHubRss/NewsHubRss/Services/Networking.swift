@@ -84,7 +84,8 @@ struct Networking {
             switch result {
             case .success(let feed):
                 switch feed {
-                case .atom:
+                case .atom(let atomFeed):
+                    // TODO: Atom feed example link: https://www.youtube.com/feeds/videos.xml?user=NFL
                     assertionFailure("Need to implement functionality to work with atom feed")
                     completion([])
                 case .rss(let rssFeed):

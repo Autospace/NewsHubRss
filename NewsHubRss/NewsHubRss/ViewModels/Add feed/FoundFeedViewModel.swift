@@ -22,12 +22,10 @@ final class FoundFeedViewModel: ObservableObject {
 
     func saveFeed() {
         let dbFeed = DBFeed(context: viewContext)
-        dbFeed.id = UUID()
         dbFeed.title = feedTitle
         dbFeed.url = feedURLString
         dbFeed.sortOrderPosition = (dbFeeds.last?.sortOrderPosition ?? 0) + 1
 
-        saveContext()
         updateSavingStatusOfTheFeed()
     }
 
@@ -55,15 +53,6 @@ final class FoundFeedViewModel: ObservableObject {
         } catch let error {
             assertionFailure()
             print("Fetch DBFeeds error: \(error)")
-        }
-    }
-
-    private func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            let error = error as NSError
-            fatalError("An error occured: \(error)")
         }
     }
 }
