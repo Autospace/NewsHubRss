@@ -104,19 +104,16 @@ final class AddFeedViewModel: ObservableObject {
             switch feed {
             case .atom(let atomFeed):
                 self.foundFeeds.append(FoundFeed(
-                    id: self.foundFeeds.count,
                     title: atomFeed.title ?? "",
                     link: url.absoluteString
                 ))
             case .rss(let rssFeed):
                 self.foundFeeds.append(FoundFeed(
-                    id: self.foundFeeds.count,
                     title: rssFeed.title ?? "",
                     link: url.absoluteString
                 ))
             case .json(let jsonFeed):
                 self.foundFeeds.append(FoundFeed(
-                    id: self.foundFeeds.count,
                     title: jsonFeed.title ?? "",
                     link: url.absoluteString
                 ))

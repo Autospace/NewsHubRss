@@ -7,6 +7,7 @@ final class HomeViewModel: ObservableObject {
 
     func fetchFeeds() {
         let request = NSFetchRequest<DBFeed>(entityName: String.init(describing: DBFeed.self))
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \DBFeed.sortOrderPosition, ascending: true)]
         do {
             dbFeeds = try dataController.container.viewContext.fetch(request)
         } catch let error {

@@ -51,7 +51,7 @@ struct AddFeedView: View {
             }
 
             List {
-                ForEach(viewModel.foundFeeds) { item in
+                ForEach(viewModel.foundFeeds, id: \.link) { item in
                     FoundFeedView(feedTitle: item.title, feedURLString: item.link)
                 }
             }
