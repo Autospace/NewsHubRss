@@ -8,15 +8,15 @@ struct NewsHubRssApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-        }
-        .onChange(of: scenePhase, { _, newValue in
-            if (newValue == .inactive || newValue == .background) && dataController.container.viewContext.hasChanges {
-                do {
-                    try dataController.container.viewContext.save()
-                } catch let error {
-                    print(error)
+                .onChange(of: scenePhase) { newValue in
+                    if (newValue == .inactive || newValue == .background) && dataController.container.viewContext.hasChanges {
+                        do {
+                            try dataController.container.viewContext.save()
+                        } catch let error {
+                            print(error)
+                        }
+                    }
                 }
-            }
-        })
+        }
     }
 }

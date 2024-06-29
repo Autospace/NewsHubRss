@@ -7,22 +7,38 @@ struct FavoritesView: View {
         Group {
             if viewModel.dbFeedItems.count == 0 {
                 VStack {
-                    ContentUnavailableView {
-                        Label(
-                            title: { Text(L10n.Favorites.EmptyView.title) },
-                            icon: {
-                                Image(systemName: "rainbow")
-                                    .symbolRenderingMode(.multicolor)
-                                    .font(.system(size: 144))
-                                    .symbolEffect(
-                                        .variableColor
-                                        .iterative
-                                        .reversing
-                                    )
-                            }
-                        )
-                    } description: {
-                        Text(L10n.Favorites.EmptyView.description)
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView {
+                            Label(
+                                title: { Text(L10n.Favorites.EmptyView.title) },
+                                icon: {
+                                    Image(systemName: "rainbow")
+                                        .symbolRenderingMode(.multicolor)
+                                        .font(.system(size: 144))
+                                        .symbolEffect(
+                                            .variableColor
+                                                .iterative
+                                                .reversing
+                                        )
+                                }
+                            )
+                        } description: {
+                            Text(L10n.Favorites.EmptyView.description)
+                        }
+                    } else {
+                        VStack(alignment: .center) {
+                            Image(systemName: "tree")
+                                .symbolRenderingMode(.multicolor)
+                                .font(.system(size: 100))
+                                .foregroundColor(.green)
+                            Text(L10n.Favorites.EmptyView.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Text(L10n.Favorites.EmptyView.description)
+                                .foregroundColor(.secondary)
+                                .font(.body)
+                                .padding([.top, .bottom], 2)
+                        }
                     }
                 }
             } else {

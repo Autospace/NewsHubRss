@@ -13,7 +13,7 @@ struct AddFeedView: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                     .focused($textFieldIsFocused)
-                    .onChange(of: viewModel.feedUrlString) { _, _ in
+                    .onChange(of: viewModel.feedUrlString) { _ in
                         viewModel.hasError = false
                     }
 
