@@ -38,6 +38,7 @@
 "deleteFoundFeed.alert.message" = "You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?";
 
 //MARK: - Favorites
+"favorites.screen.title" = "Favorites";
 "favorites.emptyView.title" = "No favorite items";
 "favorites.emptyView.description" = "All favorites that you added will be available here";
 

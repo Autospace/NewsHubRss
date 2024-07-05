@@ -52,6 +52,10 @@ internal enum L10n {
       /// No favorite items
       internal static let title = L10n.tr("Localizable", "favorites.emptyView.title", fallback: "No favorite items")
     }
+    internal enum Screen {
+      /// Favorites
+      internal static let title = L10n.tr("Localizable", "favorites.screen.title", fallback: "Favorites")
+    }
   }
   internal enum FeedItemsFilter {
     /// Apply filter

@@ -4,7 +4,11 @@ import SwiftSoup
 import FeedKit
 
 final class AddFeedViewModel: ObservableObject {
-    @Published var feedUrlString = "https://"
+    @Published var feedUrlString = "" {
+        didSet {
+            hasError = false
+        }
+    }
     @Published var isLoading = false
     @Published var hasError = false
     @Published var errorText = ""
@@ -14,6 +18,9 @@ final class AddFeedViewModel: ObservableObject {
     var searchUrl: URL?
 
     func startScanningFeed() {
+        if !feedUrlString.hasPrefix("https://") {
+            feedUrlString = "https://\(feedUrlString)"
+        }
         guard let url = URL(string: feedUrlString) else {
             return
         }
@@ -119,5 +126,16 @@ final class AddFeedViewModel: ObservableObject {
                 ))
             }
         }
+    }
+}
+
+extension AddFeedViewModel {
+    static func getMockViewModel() -> AddFeedViewModel {
+        let viewModel = AddFeedViewModel()
+        viewModel.foundFeeds = [
+            FoundFeed(title: "Test title", link: "https://testfeedurl.xyz")
+        ]
+        
+        return viewModel
     }
 }
