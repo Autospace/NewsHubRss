@@ -133,7 +133,8 @@ extension AddFeedViewModel {
     static func getMockViewModel() -> AddFeedViewModel {
         let viewModel = AddFeedViewModel()
         viewModel.foundFeeds = [
-            FoundFeed(title: "Test title", link: "https://testfeedurl.xyz")
+            FoundFeed(title: "Test title", link: "https://testfeedurl.xyz"),
+            FoundFeed(title: "Test title 2", link: "https://testfeedurl2.xyz")
         ]
         
         return viewModel

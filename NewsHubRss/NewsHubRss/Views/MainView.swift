@@ -61,7 +61,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainView()
-                .environment(\.locale, .init(identifier: "ru"))
+                .environment(\.locale, .init(identifier: "en"))
         }
     }
 }

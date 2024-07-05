@@ -39,12 +39,14 @@ struct AddFeedView: View {
                     }
                 }
 
-                List {
+                ScrollView {
                     ForEach(viewModel.foundFeeds, id: \.link) { item in
-                        FoundFeedView(feedTitle: item.title, feedURLString: item.link)
+                        GroupBox {
+                            FoundFeedView(feedTitle: item.title, feedURLString: item.link)
+                        }
+                        .padding([.leading, .trailing], 8)
                     }
                 }
-                .listStyle(.inset)
             }
             .navigationTitle(L10n.AddNewFeed.title)
             .navigationBarTitleDisplayMode(.inline)
@@ -56,10 +58,6 @@ struct AddFeedView: View {
     }
 }
 
-struct AddFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AddFeedView(viewModel: AddFeedViewModel.getMockViewModel())
-        }
-    }
+#Preview {
+    AddFeedView(viewModel: AddFeedViewModel.getMockViewModel())
 }
