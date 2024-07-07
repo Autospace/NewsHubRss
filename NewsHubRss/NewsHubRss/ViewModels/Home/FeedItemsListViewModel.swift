@@ -18,9 +18,12 @@ final class FeedItemsListViewModel: ObservableObject {
             isLoading = true
         }
         Networking.loadFeedItems(feedUrl: feed.url) {[weak self] feedItems in
-            guard let self = self else {
+            guard feedItems.isNotEmpty, let self = self else {
+                self?.listItems = []
+                self?.isLoading = false
                 return
             }
+
             let lastSavedItem = self.feed.allFeedItems.first
             if let lastSavedItem = lastSavedItem, let lastFeedItemPubDate = feedItems.sorted(by: { item1, item2 in
                 guard let pubDate1 = item1.feedData.pubDate, let pubDate2 = item2.feedData.pubDate else {
