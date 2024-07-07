@@ -7,6 +7,25 @@ struct AddFeedView: View {
         NavigationView {
             VStack {
                 VStack {
+                    TextField("example.com", text: $viewModel.feedUrlString)
+                        .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 30))
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .overlay(
+                            HStack {
+                                Spacer()
+                                if !viewModel.feedUrlString.isEmpty {
+                                    Button {
+                                        self.viewModel.feedUrlString = ""
+                                    } label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .foregroundColor(Color(.systemGray))
+                                            .padding(.trailing, 8)
+                                    }
+                                }
+                            }
+                        )
+
                     if viewModel.hasError {
                         Text(viewModel.errorText)
                             .listRowSeparator(.hidden)
@@ -51,7 +70,6 @@ struct AddFeedView: View {
             .navigationTitle(L10n.AddNewFeed.title)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .searchable(text: $viewModel.feedUrlString, prompt: "example.com")
         .keyboardType(.URL)
         .autocapitalization(.none)
         .autocorrectionDisabled()
