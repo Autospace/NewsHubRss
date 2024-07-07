@@ -99,7 +99,7 @@ final class AddFeedViewModel: ObservableObject {
     }
 
     private func addFeedToFoundFeeds(url: URL, feed: Feed?) {
-        guard let feed = feed else {
+        guard let feed = feed, !foundFeeds.contains(where: { $0.link == url.absoluteString }) else {
             return
         }
 

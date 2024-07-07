@@ -37,6 +37,8 @@ final class FoundFeedViewModel: ObservableObject {
                 viewContext.delete(foundFeed)
                 updateSavingStatusOfTheFeed()
             }
+        } else {
+            updateSavingStatusOfTheFeed()
         }
     }
 
