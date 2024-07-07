@@ -13,9 +13,10 @@ struct EditFeedView: View {
 
     var body: some View {
         VStack {
-            TextField(feedTitle, text: $feedTitle)
-                .padding()
-                .border(.gray)
+            CommonTextFieldView(
+                text: $feedTitle,
+                placeholder: L10n.AddNewFeed.EditView.feedTitlePlaceholder
+            )
             Text(feedLink)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.gray)

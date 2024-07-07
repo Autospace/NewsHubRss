@@ -19,6 +19,10 @@ internal enum L10n {
     internal static let scanButtonTitle = L10n.tr("Localizable", "addNewFeed.scanButtonTitle", fallback: "Scan")
     /// Add feed
     internal static let title = L10n.tr("Localizable", "addNewFeed.title", fallback: "Add feed")
+    internal enum EditView {
+      /// Feed title
+      internal static let feedTitlePlaceholder = L10n.tr("Localizable", "addNewFeed.editView.feedTitlePlaceholder", fallback: "Feed title")
+    }
     internal enum TextField {
       /// Feed URL
       internal static let placeholder = L10n.tr("Localizable", "addNewFeed.textField.placeholder", fallback: "Feed URL")
@@ -82,6 +86,8 @@ internal enum L10n {
     }
   }
   internal enum Settings {
+    /// Settings
+    internal static let screenTitle = L10n.tr("Localizable", "settings.screenTitle", fallback: "Settings")
     internal enum Displaying {
       /// Displaying
       internal static let title = L10n.tr("Localizable", "settings.displaying.title", fallback: "Displaying")
@@ -110,10 +116,6 @@ internal enum L10n {
       /// Use reader in Safari if available
       internal static let title = L10n.tr("Localizable", "settings.safariReader.title", fallback: "Use reader in Safari if available")
     }
-  }
-  internal enum SettingsPage {
-    /// Settings
-    internal static let title = L10n.tr("Localizable", "settingsPage.title", fallback: "Settings")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

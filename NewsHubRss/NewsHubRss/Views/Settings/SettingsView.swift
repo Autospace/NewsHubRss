@@ -24,7 +24,7 @@ struct SettingsView: View {
                     Toggle(L10n.Settings.ImagesForFeedItemsInTheList.title, isOn: $showImagesForFeedItemsInTheList)
                 }
             }
-            .navigationTitle(L10n.SettingsPage.title)
+            .navigationTitle(L10n.Settings.screenTitle)
         }
     }
 }

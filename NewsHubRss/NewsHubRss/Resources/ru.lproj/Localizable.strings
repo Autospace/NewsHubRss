@@ -25,15 +25,13 @@
 "feedItemsFilter.authorsSection.title" = "Авторы";
 "feedItemsFilter.authorsSection.unknownAuthor" = "Неизвестный автор";
 
-// MARK: - Settings page
-"settingsPage.title" = "Настройки";
-
 // MARK: - Add new feed page
 "addNewFeed.title" = "Добавить фид";
 "addNewFeed.instruction" = "Добавьте ссылку на фид в поле ниже";
 "addNewFeed.textField.placeholder" = "URL фида";
 "addNewFeed.scanButtonTitle" = "Сканировать";
 "addNewFeed.buttonTitle" = "Добавить";
+"addNewFeed.editView.feedTitlePlaceholder" = "Заголовок фида";
 
 "deleteFoundFeed.alert.message" = "Вы пытаетесь удалить канал с сохраненными элементами, связанными с ним. При нажатии кнопки «Продолжить» они также будут удалены. Вы уверены?";
 
@@ -43,6 +41,7 @@
 "favorites.emptyView.description" = "Все избранные элементы, которые вы добавите, будут отображены здесь";
 
 // MARK: - Settings
+"settings.screenTitle" = "Настройки";
 "settings.displaying.title" = "Отображение";
 "settings.displaying.theme.title" = "Тема";
 "settings.displaying.theme.system.title" = "Системная";

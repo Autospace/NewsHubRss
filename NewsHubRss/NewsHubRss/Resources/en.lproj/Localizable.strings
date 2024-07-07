@@ -25,15 +25,13 @@
 "feedItemsFilter.authorsSection.title" = "Authors";
 "feedItemsFilter.authorsSection.unknownAuthor" = "Unknown author";
 
-// MARK: - Settings page
-"settingsPage.title" = "Settings";
-
 // MARK: - Add new feed page
 "addNewFeed.title" = "Add feed";
 "addNewFeed.instruction" = "Insert feed link into the field below";
 "addNewFeed.textField.placeholder" = "Feed URL";
 "addNewFeed.scanButtonTitle" = "Scan";
 "addNewFeed.buttonTitle" = "Add";
+"addNewFeed.editView.feedTitlePlaceholder" = "Feed title";
 
 "deleteFoundFeed.alert.message" = "You try to delete a feed with saved items related to it. Proceed will delete them as well. Are you sure?";
 
@@ -43,6 +41,7 @@
 "favorites.emptyView.description" = "All favorites that you added will be available here";
 
 // MARK: - Settings
+"settings.screenTitle" = "Settings";
 "settings.displaying.title" = "Displaying";
 "settings.displaying.theme.title" = "Theme";
 "settings.displaying.theme.system.title" = "System";

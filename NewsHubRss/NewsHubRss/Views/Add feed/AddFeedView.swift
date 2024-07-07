@@ -7,24 +7,10 @@ struct AddFeedView: View {
         NavigationView {
             VStack {
                 VStack {
-                    TextField("example.com", text: $viewModel.feedUrlString)
-                        .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 30))
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .overlay(
-                            HStack {
-                                Spacer()
-                                if !viewModel.feedUrlString.isEmpty {
-                                    Button {
-                                        self.viewModel.feedUrlString = ""
-                                    } label: {
-                                        Image(systemName: "xmark.circle.fill")
-                                            .foregroundColor(Color(.systemGray))
-                                            .padding(.trailing, 8)
-                                    }
-                                }
-                            }
-                        )
+                    CommonTextFieldView(
+                        text: $viewModel.feedUrlString,
+                        placeholder: "example.com"
+                    )
 
                     if viewModel.hasError {
                         Text(viewModel.errorText)
