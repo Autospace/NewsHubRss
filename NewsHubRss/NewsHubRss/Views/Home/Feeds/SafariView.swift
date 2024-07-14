@@ -17,8 +17,6 @@ struct SafariView: UIViewControllerRepresentable {
     }
 }
 
-struct SafariView_Previews: PreviewProvider {
-    static var previews: some View {
-        SafariView(url: URL(string: "https://devby.io")!)
-    }
+#Preview {
+    SafariView(url: URL(string: "https://www.indiehackers.com/post/34-year-old-finds-financial-freedom-through-day-trading-and-uses-it-to-build-a-10k-mo-fintech-product-PujthWlU8L3nS4mz2GSc")!)
 }
