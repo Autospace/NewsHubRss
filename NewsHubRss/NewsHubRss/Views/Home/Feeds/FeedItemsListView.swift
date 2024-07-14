@@ -79,8 +79,6 @@ struct FeedItemsListView: View {
     }
 }
 
-struct FeedItemsList_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedItemsListView(feed: DBFeed.previewInstance())
-    }
+#Preview {
+    FeedItemsListView(feed: DBFeed.previewInstance())
 }

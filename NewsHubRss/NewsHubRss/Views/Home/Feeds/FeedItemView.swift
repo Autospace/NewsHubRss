@@ -59,8 +59,6 @@ struct FeedItemView: View {
     }
 }
 
-struct FeedItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedItemView(title: "Test title", date: Date(), imageUrl: URL(string: "https://picsum.photos/200/200"))
-    }
+#Preview {
+    FeedItemView(title: "Test title", date: Date(), imageUrl: URL(string: "https://picsum.photos/200/200"))
 }
