@@ -1,15 +1,8 @@
 import SwiftUI
 
 struct EditFeedView: View {
-    @State private var feedTitle: String = ""
+    @Binding var feedTitle: String
     let feedLink: String
-    let saveHandler: ((_ title: String) -> Void)
-
-    init(feedTitle: String, feedLink: String, saveHandler: @escaping (_: String) -> Void) {
-        self.feedTitle = feedTitle
-        self.feedLink = feedLink
-        self.saveHandler = saveHandler
-    }
 
     var body: some View {
         VStack {
@@ -22,12 +15,6 @@ struct EditFeedView: View {
                 .foregroundColor(.gray)
 
             Spacer()
-
-            Button {
-                saveHandler(feedTitle)
-            } label: {
-                Text(L10n.Common.save)
-            }
         }
         .padding()
     }
@@ -35,8 +22,7 @@ struct EditFeedView: View {
 
 #Preview {
     EditFeedView(
-        feedTitle: "Test title",
-        feedLink: "https://test.link",
-        saveHandler: { _ in}
+        feedTitle: Binding.constant("Test title"),
+        feedLink: "https://test.link"
     )
 }

@@ -25,10 +25,7 @@ struct FoundFeedView: View {
                 viewModel.showingFeedEditView = true
             }
             .sheet(isPresented: $viewModel.showingFeedEditView, content: {
-                EditFeedView(feedTitle: viewModel.feedTitle, feedLink: viewModel.feedURLString) { newTitle in
-                    viewModel.feedTitle = newTitle
-                    viewModel.showingFeedEditView = false
-                }
+                EditFeedView(feedTitle: $viewModel.feedTitle, feedLink: viewModel.feedURLString)
             })
 
             Spacer()
