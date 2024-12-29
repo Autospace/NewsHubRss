@@ -17,4 +17,10 @@ final class FavoritesViewModel: ObservableObject {
             print("Fetch error: \(error)")
         }
     }
+
+    func deleteItems(at offsets: IndexSet) {
+        for index in offsets {
+            dbFeedItems[index].hasDeleted = true
+        }
+    }
 }
