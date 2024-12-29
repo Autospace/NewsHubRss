@@ -54,6 +54,7 @@ struct FavoritesView: View {
                                 viewModel.selectedFeedItem = feedItem
                             }
                         }
+                        .onDelete(perform: viewModel.deleteItems)
                     }
                     .fullScreenCover(item: $viewModel.selectedFeedItem) { selectedFeedItem in
                         if let url = URL(string: selectedFeedItem.link) {

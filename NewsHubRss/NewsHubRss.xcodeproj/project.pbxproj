@@ -255,13 +255,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		1069B19A2C3AF820003DA1A1 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		1069B19D2C3AFB8C003DA1A1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,7 +330,6 @@
 		5FA579FB28C941360009C5C8 /* NewsHubRss */ = {
 			isa = PBXGroup;
 			children = (
-				1069B19A2C3AF820003DA1A1 /* New Group */,
 				10B18FB42AE184AC008B5B85 /* Extensions */,
 				10861BA329B26A6F0082F8B3 /* Resources */,
 				1013A34A2AC9E15300D7CE84 /* Info.plist */,
