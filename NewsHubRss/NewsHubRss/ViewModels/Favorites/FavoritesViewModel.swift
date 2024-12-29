@@ -8,7 +8,7 @@ final class FavoritesViewModel: ObservableObject {
 
     func fetchFavorites() {
         let request = NSFetchRequest<DBFeedItem>(entityName: String.init(describing: DBFeedItem.self))
-        request.predicate = NSPredicate(format: "isFavorite == true")
+        request.predicate = NSPredicate(format: "isFavorite == true && hasDeleted == false")
         do {
             dbFeedItems = try viewContext.fetch(request).sorted(by: { item1, item2 in
                 item1.pubDate > item2.pubDate
@@ -22,5 +22,6 @@ final class FavoritesViewModel: ObservableObject {
         for index in offsets {
             dbFeedItems[index].hasDeleted = true
         }
+        dbFeedItems.remove(atOffsets: offsets)
     }
 }
