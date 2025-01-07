@@ -942,7 +942,7 @@
 			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.7.1;
+				version = 2.7.5;
 			};
 		};
 		10FF3E3E2B8244C90015DE15 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
