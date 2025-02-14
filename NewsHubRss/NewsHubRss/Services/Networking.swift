@@ -48,6 +48,7 @@ struct Networking {
             let isRss = contentType.hasPrefix("application/rss+xml")
                         || contentType.hasPrefix("application/xml")
                         || contentType.hasPrefix("text/xml")
+                        || contentType.hasPrefix("application/json")
 
             completion(isRss)
         }
@@ -85,22 +86,37 @@ struct Networking {
             case .success(let feed):
                 switch feed {
                 case .atom(let atomFeed):
-                    // TODO: Atom feed example link: https://www.youtube.com/feeds/videos.xml?user=NFL
-                    assertionFailure("Need to implement functionality to work with atom feed")
-                    completion([])
-                case .rss(let rssFeed):
-                    if let items = rssFeed.items {
-                        var feedItems: [FeedItem] = []
-                        for (index, item) in items.enumerated() {
-                            feedItems.append(FeedItem(id: index, feedData: item))
+                    // Atom feed example link: https://www.youtube.com/feeds/videos.xml?user=NFL
+                    var feedItems: [FeedItem] = []
+                    if let entities = atomFeed.entries {
+                        for (index, feedEntity) in entities.enumerated() {
+                            feedItems.append(FeedItem(id: index, feedItemData: .atomFeed(feedEntity)))
                         }
                         completion(feedItems)
                     } else {
                         completion([])
                     }
-                case .json:
-                    assertionFailure("Need to implement functionality to work with JSON feed")
-                    completion([])
+                case .rss(let rssFeed):
+                    if let items = rssFeed.items {
+                        var feedItems: [FeedItem] = []
+                        for (index, item) in items.enumerated() {
+                            feedItems.append(FeedItem(id: index, feedItemData: .rssFeed(item)))
+                        }
+                        completion(feedItems)
+                    } else {
+                        completion([])
+                    }
+                case .json(let jsonFeed):
+                    // JSON feed example link: https://www.jsonfeed.org/feed.json
+                    if let items = jsonFeed.items {
+                        var feedItems: [FeedItem] = []
+                        for (index, item) in items.enumerated() {
+                            feedItems.append(FeedItem(id: index, feedItemData: .jsonFeed(item)))
+                        }
+                        completion(feedItems)
+                    } else {
+                        completion([])
+                    }
                 }
             case .failure(let error):
                 assertionFailure("\(error.localizedDescription)")

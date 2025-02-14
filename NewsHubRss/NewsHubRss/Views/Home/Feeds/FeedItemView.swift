@@ -38,12 +38,16 @@ struct FeedItemView: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 Text(title.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(hasRead ? .gray : (colorScheme == .dark ? .white : .black))
                 Text(getDateString())
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
             }
+            .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: .infinity)
         .onTapGesture {
             hasRead = true
             onTapActionHandler?()
