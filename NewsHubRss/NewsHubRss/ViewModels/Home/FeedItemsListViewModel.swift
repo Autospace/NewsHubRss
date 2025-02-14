@@ -26,11 +26,11 @@ final class FeedItemsListViewModel: ObservableObject {
 
             let lastSavedItem = self.feed.allFeedItems.first
             if let lastSavedItem = lastSavedItem, let lastFeedItemPubDate = feedItems.sorted(by: { item1, item2 in
-                guard let pubDate1 = item1.feedData.pubDate, let pubDate2 = item2.feedData.pubDate else {
+                guard let pubDate1 = item1.publishedDate, let pubDate2 = item2.publishedDate else {
                     return false
                 }
                 return pubDate1 > pubDate2
-            }).first?.feedData.pubDate, lastSavedItem.pubDate >= lastFeedItemPubDate {
+            }).first?.publishedDate, lastSavedItem.pubDate >= lastFeedItemPubDate {
                 DispatchQueue.main.async {
                     self.isLoading = false
                 }
@@ -38,15 +38,15 @@ final class FeedItemsListViewModel: ObservableObject {
             }
 
             for feedItem in feedItems {
-                guard let link = feedItem.feedData.link,
-                      let title = feedItem.feedData.title,
-                      let pubDate = feedItem.feedData.pubDate else {
+                guard let link = feedItem.link,
+                      let title = feedItem.title,
+                      let pubDate = feedItem.publishedDate else {
                     assertionFailure()
                     continue
                 }
 
                 if let lastSavedItem = lastSavedItem,
-                   let feedItemPubDate = feedItem.feedData.pubDate,
+                   let feedItemPubDate = feedItem.publishedDate,
                    lastSavedItem.pubDate >= feedItemPubDate {
                     continue
                 }
@@ -54,13 +54,13 @@ final class FeedItemsListViewModel: ObservableObject {
                 let dbFeedItem = DBFeedItem(context: self.viewContext)
                 dbFeedItem.title = title
                 dbFeedItem.link = link
-                dbFeedItem.author = feedItem.feedData.author ?? feedItem.feedData.dublinCore?.dcCreator
-                dbFeedItem.guid = feedItem.feedData.guid?.value ?? link
+                dbFeedItem.author = feedItem.author
+                dbFeedItem.guid = feedItem.guid ?? link
                 dbFeedItem.pubDate = pubDate
                 dbFeedItem.dbFeed = feed
-                dbFeedItem.enclosureLink = feedItem.feedData.enclosure?.attributes?.url
-                dbFeedItem.enclosureLength = NSNumber(value: feedItem.feedData.enclosure?.attributes?.length ?? 0)
-                dbFeedItem.enclosureType = feedItem.feedData.enclosure?.attributes?.type
+                dbFeedItem.enclosureLink = feedItem.enclosureLink
+//                dbFeedItem.enclosureLength = NSNumber(value: feedItem.feedData.enclosure?.attributes?.length ?? 0)
+//                dbFeedItem.enclosureType = feedItem.feedData.enclosure?.attributes?.type
             }
 
             DispatchQueue.main.async {
