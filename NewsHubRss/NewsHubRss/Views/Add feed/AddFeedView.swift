@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AddFeedView: View {
     @StateObject var viewModel = AddFeedViewModel()
+    @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
         NavigationView {
@@ -9,7 +10,8 @@ struct AddFeedView: View {
                 VStack {
                     CommonTextFieldView(
                         text: $viewModel.feedUrlString,
-                        placeholder: "example.com"
+                        placeholder: "example.com",
+                        isFocused: _isTextFieldFocused
                     )
 
                     if viewModel.hasError {
@@ -21,6 +23,7 @@ struct AddFeedView: View {
                     }
 
                     Button {
+                        isTextFieldFocused = false
                         viewModel.startScanningFeed()
                     } label: {
                         HStack {

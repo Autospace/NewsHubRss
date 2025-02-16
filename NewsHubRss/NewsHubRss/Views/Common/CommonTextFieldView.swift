@@ -3,9 +3,11 @@ import SwiftUI
 struct CommonTextFieldView: View {
     @Binding var text: String
     let placeholder: String
+    @FocusState var isFocused: Bool
 
     var body: some View {
         TextField(placeholder, text: $text)
+            .focused($isFocused)
             .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 30))
             .background(Color(.systemGray6))
             .cornerRadius(8)
