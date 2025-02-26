@@ -16,6 +16,7 @@ struct EditFeedView: View {
 
             Spacer()
         }
+        .keyboardType(.default)
         .padding()
     }
 }
