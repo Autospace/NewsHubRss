@@ -52,9 +52,7 @@ struct HomeView: View {
                             .listRowInsets(EdgeInsets())
                             .listRowBackground(Color.clear)
                         }
-                        .onMove { indexSet, intValue in
-                            print("Index set: \(indexSet), IntValue: \(intValue)")
-                        }
+                        .onMove(perform: viewModel.moveItems)
                         .onDelete(perform: viewModel.deleteItems)
                         .listRowSeparator(.hidden)
                         .padding(.horizontal, 8)

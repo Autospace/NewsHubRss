@@ -24,4 +24,16 @@ final class HomeViewModel: ObservableObject {
         dataController.delete(item: itemToDelete)
         fetchFeeds()
     }
+
+    func moveItems(from source: IndexSet, to destination: Int) {
+        dbFeeds.move(fromOffsets: source, toOffset: destination)
+        saveOrder()
+    }
+
+    private func saveOrder() {
+        for (index, feed) in dbFeeds.enumerated() {
+            feed.sortOrderPosition = Int16(index)
+        }
+        try? DataController.shared.container.viewContext.save()
+    }
 }
