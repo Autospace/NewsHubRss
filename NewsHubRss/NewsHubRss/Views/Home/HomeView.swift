@@ -57,6 +57,7 @@ struct HomeView: View {
                         }
                         .onDelete(perform: viewModel.deleteItems)
                         .listRowSeparator(.hidden)
+                        .padding(.horizontal, 8)
                     }
                     .listStyle(.plain)
                 }
