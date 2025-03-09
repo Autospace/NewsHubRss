@@ -49,6 +49,8 @@ struct HomeView: View {
                             } label: {
                                 HomeFeedView(feed: dbFeed)
                             }
+                            .listRowInsets(EdgeInsets())
+                            .listRowBackground(Color.clear)
                         }
                         .onMove { indexSet, intValue in
                             print("Index set: \(indexSet), IntValue: \(intValue)")

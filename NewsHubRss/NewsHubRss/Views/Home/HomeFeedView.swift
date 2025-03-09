@@ -15,8 +15,7 @@ struct HomeFeedView: View {
                     .padding(.top, 4)
                     .lineLimit(nil)
             }
-            .padding([.leading, .top, .trailing])
-            .padding(.bottom, 4)
+            .padding()
 
             if feed.unreadCount > 0 {
                 Text("\(L10n.MainPage.HomeFeedView.unread) - \(feed.unreadCount)")
@@ -29,7 +28,7 @@ struct HomeFeedView: View {
                     .offset(x: 12, y: -12)
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
     }
 }
 
