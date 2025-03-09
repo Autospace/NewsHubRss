@@ -22,7 +22,7 @@ struct FeedItemsListView: View {
                         hasRead: item.hasRead
                     ) {
                         selectedFeedItem = item
-                        item.hasRead = true
+                        item.markAsRead()
                     }
                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
                         Button(role: .cancel) {

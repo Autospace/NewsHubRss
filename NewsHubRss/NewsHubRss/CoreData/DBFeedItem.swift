@@ -9,9 +9,14 @@ class DBFeedItem: NSManagedObject, Identifiable {
     @NSManaged var enclosureLink: String?
     @NSManaged var enclosureLength: NSNumber?
     @NSManaged var enclosureType: String?
-    @NSManaged var hasRead: Bool
+    @NSManaged private(set) var hasRead: Bool
     @NSManaged var hasDeleted: Bool
     @NSManaged var isFavorite: Bool
 
     @NSManaged var dbFeed: DBFeed
+
+    func markAsRead() {
+        hasRead = true
+        try? managedObjectContext?.save()
+    }
 }

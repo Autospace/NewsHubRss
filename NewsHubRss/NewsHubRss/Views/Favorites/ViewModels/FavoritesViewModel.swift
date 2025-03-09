@@ -2,7 +2,11 @@ import Foundation
 import CoreData
 
 final class FavoritesViewModel: ObservableObject {
-    @Published var selectedFeedItem: DBFeedItem?
+    @Published var selectedFeedItem: DBFeedItem? {
+        didSet {
+            selectedFeedItem?.markAsRead()
+        }
+    }
     @Published var dbFeedItems: [DBFeedItem] = []
     private let viewContext = DataController.shared.container.viewContext
 
