@@ -9,16 +9,17 @@ struct HomeFeedView: View {
                 .stroke(Color.gray, lineWidth: 1)
                 .cornerRadius(10)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(feed.title)
                     .font(.headline)
-                    .padding(.top, 8)
+                    .padding(.top, 4)
                     .lineLimit(nil)
             }
-            .padding()
+            .padding([.leading, .top, .trailing])
+            .padding(.bottom, 4)
 
             if feed.unreadCount > 0 {
-                Text("Непрочитано - \(feed.unreadCount)")
+                Text("\(L10n.MainPage.HomeFeedView.unread) - \(feed.unreadCount)")
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(.horizontal, 8)

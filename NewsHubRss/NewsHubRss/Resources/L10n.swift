@@ -84,6 +84,10 @@ internal enum L10n {
       /// No feeds
       internal static let title = L10n.tr("Localizable", "mainPage.emptyState.title", fallback: "No feeds")
     }
+    internal enum HomeFeedView {
+      /// Unread
+      internal static let unread = L10n.tr("Localizable", "mainPage.homeFeedView.unread", fallback: "Unread")
+    }
   }
   internal enum Settings {
     /// Settings
