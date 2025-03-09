@@ -18,6 +18,7 @@
 "mainPage.emptyState.title" = "No feeds";
 "mainPage.emptyState.description" = "You can add new feeds on the tab with \"+\" icon";
 "mainPage.emptyState.buttonTitle" = "Add first RSS feed";
+"mainPage.homeFeedView.unread" = "Unread";
 
 // MARK: - Feed items filter
 "feedItemsFilter.applyFilterButtonTitle" = "Apply filter";

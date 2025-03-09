@@ -47,14 +47,19 @@ struct HomeView: View {
                             NavigationLink {
                                 FeedItemsListView(feed: dbFeed)
                             } label: {
-                                Text(dbFeed.title)
+                                HomeFeedView(feed: dbFeed)
                             }
+                            .listRowInsets(EdgeInsets())
+                            .listRowBackground(Color.clear)
                         }
                         .onMove { indexSet, intValue in
                             print("Index set: \(indexSet), IntValue: \(intValue)")
                         }
                         .onDelete(perform: viewModel.deleteItems)
+                        .listRowSeparator(.hidden)
+                        .padding(.horizontal, 8)
                     }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle(L10n.MainPage.title)

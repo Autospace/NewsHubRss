@@ -1,13 +1,14 @@
 import CoreData
 
-class DBFeed: NSManagedObject, Identifiable {
+final class DBFeed: NSManagedObject, Identifiable {
     @NSManaged var title: String
     @NSManaged var url: String
     @NSManaged var sortOrderPosition: Int16
+    @Published var unreadCount: Int = 0
 
     @NSManaged private var dbFeedItems: Set<DBFeedItem>?
 
-    public var feedItems: [DBFeedItem] {
+    var feedItems: [DBFeedItem] {
         let set = dbFeedItems ?? []
         return set.sorted {
             $0.pubDate > $1.pubDate
@@ -16,10 +17,27 @@ class DBFeed: NSManagedObject, Identifiable {
         }
     }
 
-    public var allFeedItems: [DBFeedItem] {
+    var allFeedItems: [DBFeedItem] {
         let set = dbFeedItems ?? []
         return set.sorted {
             $0.pubDate > $1.pubDate
+        }
+    }
+
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        calculateUnreadCount()
+    }
+
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        calculateUnreadCount()
+    }
+
+    private func calculateUnreadCount() {
+        let numberOfUnreadItems = feedItems.filter { $0.hasRead == false && $0.hasDeleted == false }.count
+        if unreadCount != numberOfUnreadItems {
+            unreadCount = numberOfUnreadItems
         }
     }
 }
@@ -34,7 +52,7 @@ extension DBFeed {
             getFeedItem(feed: instance, title: "Feed item 2", author: "TestAuthor"),
             getFeedItem(feed: instance, title: "Feed item 3", author: "TestAuthor"),
             getFeedItem(feed: instance, title: "Feed item 4", author: nil),
-            getFeedItem(feed: instance, title: "Feed item 5", author: nil),
+            getFeedItem(feed: instance, title: "Feed item 5", author: nil)
         ]
 
         return instance

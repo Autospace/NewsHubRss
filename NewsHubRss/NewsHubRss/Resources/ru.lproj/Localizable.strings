@@ -1,11 +1,3 @@
-/* 
-  Localizable.strings
-  NewsHubRss
-
-  Created by Aliaksei Mastounikau on 2.03.23.
-  
-*/
-
 // MARK: - Common strings
 "common.add" = "Добавить";
 "common.attention" = "Внимание!";
@@ -18,6 +10,7 @@
 "mainPage.emptyState.title" = "Нет фидов";
 "mainPage.emptyState.description" = "Вы можете добавить новый фид во вкладке с иконкой \"+\"";
 "mainPage.emptyState.buttonTitle" = "Добавить первый RSS фид";
+"mainPage.homeFeedView.unread" = "Непрочитано";
 
 // MARK: - Feed items filter
 "feedItemsFilter.applyFilterButtonTitle" = "Применить фильтр";
