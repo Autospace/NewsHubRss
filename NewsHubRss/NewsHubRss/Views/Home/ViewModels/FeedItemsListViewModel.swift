@@ -66,6 +66,7 @@ final class FeedItemsListViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.applyFilterCompletion(self.filter)
+                try? self.viewContext.save()
             }
         }
     }
