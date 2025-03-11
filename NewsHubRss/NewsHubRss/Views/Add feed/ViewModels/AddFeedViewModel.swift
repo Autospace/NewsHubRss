@@ -7,6 +7,7 @@ final class AddFeedViewModel: ObservableObject {
     @Published var feedUrlString = "" {
         didSet {
             hasError = false
+            handleUrlChange(feedUrlString)
         }
     }
     @Published var isLoading = false
@@ -125,6 +126,12 @@ final class AddFeedViewModel: ObservableObject {
                     link: url.absoluteString
                 ))
             }
+        }
+    }
+
+    private func handleUrlChange(_ url: String) {
+        if url.isEmpty {
+            self.foundFeeds.removeAll()
         }
     }
 }
