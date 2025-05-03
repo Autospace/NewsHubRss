@@ -27,6 +27,7 @@ struct FeedItemsListView: View {
                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
                         Button(role: .cancel) {
                             item.isFavorite.toggle()
+                            viewModel.saveViewContext()
                         } label: {
                             Label("", systemImage: item.isFavorite ? "heart.slash" : "heart")
                         }
