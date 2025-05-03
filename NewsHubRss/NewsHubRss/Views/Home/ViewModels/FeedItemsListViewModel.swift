@@ -89,4 +89,9 @@ final class FeedItemsListViewModel: ObservableObject {
             })
         }
     }
+
+    func saveViewContext() {
+        try? viewContext.save()
+        listItems = feed.feedItems
+    }
 }

@@ -26,11 +26,12 @@ struct FeedItemsListView: View {
                     }
                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
                         Button(role: .cancel) {
-                            item.isFavorite = true
+                            item.isFavorite.toggle()
+                            viewModel.saveViewContext()
                         } label: {
-                            Label("", systemImage: "heart")
+                            Label("", systemImage: item.isFavorite ? "heart.slash" : "heart")
                         }
-                        .tint(.green)
+                        .tint(item.isFavorite ? .red : .green)
                     }
                 }
                 .onDelete(perform: viewModel.deleteItems)
