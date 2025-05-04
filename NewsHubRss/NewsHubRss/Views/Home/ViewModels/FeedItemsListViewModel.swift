@@ -75,6 +75,8 @@ final class FeedItemsListViewModel: ObservableObject {
         for index in offsets {
             feed.feedItems[index].hasDeleted = true
         }
+        try? viewContext.save()
+        listItems = feed.feedItems
     }
 
     func applyFilterCompletion(_ filter: FeedItemsListFilter) {
