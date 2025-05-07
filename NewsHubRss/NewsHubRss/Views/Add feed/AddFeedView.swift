@@ -59,6 +59,7 @@ struct AddFeedView: View {
             .navigationTitle(L10n.AddNewFeed.title)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .keyboardType(.URL)
         .autocapitalization(.none)
         .autocorrectionDisabled()

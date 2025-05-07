@@ -62,6 +62,7 @@ struct HomeView: View {
             }
             .navigationTitle(L10n.MainPage.title)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             viewModel.fetchFeeds()
         }
