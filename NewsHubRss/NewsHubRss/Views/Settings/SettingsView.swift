@@ -26,6 +26,7 @@ struct SettingsView: View {
             }
             .navigationTitle(L10n.Settings.screenTitle)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

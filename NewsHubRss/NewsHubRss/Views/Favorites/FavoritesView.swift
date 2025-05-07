@@ -65,6 +65,7 @@ struct FavoritesView: View {
             }
             .navigationTitle(L10n.Favorites.Screen.title)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             viewModel.fetchFavorites()
         }
